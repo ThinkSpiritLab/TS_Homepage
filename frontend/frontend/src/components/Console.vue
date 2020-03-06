@@ -14,12 +14,12 @@
     <el-container>
       <el-aside width="200px">
         <el-menu background-color="#333744" text-color="#fff" active-text-color="#409BFF"
-                :unique-opened="true" :router="true" :default-active="activePath">
-          <el-submenu :index="item.mid+''" v-for="item in menuList" :key="item.mid">
+                :unique-opened="false" :router="true" :default-active="activePath">
+          <el-submenu :index="'console_'+item.mid" v-for="item in menuList" :key="item.mid">
             <template slot="title">
               <span>{{item.mname}}</span>
             </template>
-            <el-menu-item :index="subItem.path" v-for="subItem in item.children"
+            <el-menu-item :index="'console_'+subItem.path" v-for="subItem in item.children"
                           :key="subItem.mid" @click="savaNavState(subItem.path)">
               <template slot="title">
                 <i class="el-icon-menu"></i>
@@ -30,7 +30,9 @@
         </el-menu>
       </el-aside>
       <el-main>
-        <router-view></router-view>
+        <transition name="el-zoom-in-center">
+          <router-view></router-view>
+        </transition>
       </el-main>
     </el-container>
   </el-container>
@@ -38,7 +40,7 @@
 
 <script>
   export default {
-    name: "Home",
+    name: "Console",
     data() {
       return {
         userTipInfo: {
@@ -71,10 +73,10 @@
         this.$router.push('/index');
       },
       getMenuList: async function () {
-        const {data: res} = await this.$http.get('console/menu_list')
+        const {data: res} = await this.$http.get('/console/menu_list')
         if (res.code !== 200) {
           this.$message.error(res.msg);
-          await this.$router.push('/index');
+          await this.$router.push('/main');
         }
         this.menuList = res.data;
       },

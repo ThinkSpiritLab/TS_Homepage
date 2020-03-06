@@ -1,7 +1,8 @@
 package jwt
 
 import (
-	"backend/routers/api/v1/common"
+	"backend/routers/api/v1"
+	"fmt"
 	"net/http"
 	"time"
 
@@ -28,9 +29,10 @@ func checkTokenValid(token string) (code int){
 
 func JWT_contest() gin.HandlerFunc {
 	return func(c *gin.Context) {
+		fmt.Println(c)
 		token := c.Request.Header.Get("Authorization")
 		code := checkTokenValid(token)
-		if code == e.SUCCESS && !common.CheckContestPrivilege(token) {
+		if code == e.SUCCESS && !v1.CheckContestPrivilege(token) {
 			code = e.ERROR_AUTH_CHECK_TOKEN_FAIL
 		}
 		if code == e.SUCCESS {
@@ -50,7 +52,7 @@ func JWT_teamManage() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		token := c.Request.Header.Get("Authorization")
 		code := checkTokenValid(token)
-		if code == e.SUCCESS && !common.CheckTeamManagePrivilege(token) {
+		if code == e.SUCCESS && !v1.CheckTeamManagePrivilege(token) {
 			code = e.ERROR_AUTH_CHECK_TOKEN_FAIL
 		}
 		if code == e.SUCCESS {
@@ -66,11 +68,31 @@ func JWT_teamManage() gin.HandlerFunc {
 	}
 }
 
-func JWT_Console() gin.HandlerFunc {
+func JWT_console() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		token := c.Request.Header.Get("Authorization")
 		code := checkTokenValid(token)
-		if code == e.SUCCESS && !common.CheckConsolePrivilege(token){
+		if code == e.SUCCESS && !v1.CheckConsolePrivilege(token){
+			code = e.ERROR_AUTH_CHECK_TOKEN_FAIL
+		}
+		if code == e.SUCCESS {
+			c.Next()
+		} else {
+			c.JSON(http.StatusUnauthorized, gin.H{
+				"code" : code,
+				"msg" : e.GetMsg(code),
+				"data" : nil,
+			})
+			c.Abort()
+		}
+	}
+}
+
+func JWT_admin() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		token := c.Request.Header.Get("Authorization")
+		code := checkTokenValid(token)
+		if code == e.SUCCESS && !v1.CheckAdminPrivilege(token){
 			code = e.ERROR_AUTH_CHECK_TOKEN_FAIL
 		}
 		if code == e.SUCCESS {

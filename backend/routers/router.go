@@ -2,8 +2,7 @@ package routers
 
 import (
 	"backend/middleware/jwt"
-	"backend/routers/api/v1/common"
-	"backend/routers/api/v1/console"
+	"backend/routers/api/v1"
 	"github.com/gin-gonic/gin"
 )
 
@@ -20,31 +19,23 @@ func InitRouter() *gin.Engine {
 		})
 	})
 
-	apiV1 := r.Group("/api/v1/common")
+	apiV1 := r.Group("/api/v1")
 	{
-		apiV1.POST("/auth_login", common.AuthLogin)
+		apiV1.POST("/auth_login", v1.AuthLogin)
 
-		apiV1.GET("/user_info", common.UserInfo)
-		apiV1.GET("/user_detail", common.UserDetail)
-	}
+		apiV1.GET("/user_info", v1.UserInfo)
+		apiV1.GET("/user_detail", v1.UserDetail)
 
-	r.GET("/api/v1/console/menu_list", jwt.JWT_Console(), console.ConsoleMenu)
+		apiV1.GET("/console/menu_list", jwt.JWT_console(), v1.ConsoleMenu)
 
-	apiV1Contest := r.Group("/api/v1/contest")
-	apiV1Contest.Use(jwt.JWT_contest())
-	{
-		apiV1Contest.GET("/test", func(c *gin.Context) {
+
+		apiV1.POST("/console/user_regist", jwt.JWT_teamManage(), v1.UserAdd)
+
+		apiV1.GET("/console/contest_test", jwt.JWT_contest(),func(c *gin.Context) {
 			c.JSON(200, gin.H{
 				"message": "test",
 			})
 		})
 	}
-
-	apiV1Teammanage := r.Group("/api/v1/teammanage")
-	apiV1Teammanage.Use(jwt.JWT_teamManage())
-	{
-
-	}
-
 	return r
 }

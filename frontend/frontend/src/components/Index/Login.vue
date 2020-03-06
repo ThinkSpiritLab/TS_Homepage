@@ -53,7 +53,7 @@
           }
           else {
             this.login_button_loading  = true;
-            const { data:result } = await this.$http.post('common/auth_login', this.login_form);
+            const { data:result } = await this.$http.post('/auth_login', this.login_form);
             this.login_button_loading  = false;
             if (result.code !== 200) {
               this.$message.error('用户名或密码错误');
@@ -62,7 +62,7 @@
               window.sessionStorage.setItem('Authorization', result.data.token);
               window.sessionStorage.setItem('MyInfo', JSON.stringify(result.data.userinfo));
               this.$emit('LoginComplete');
-              await this.$router.push('/index')
+              await this.$router.push('/main')
             }
           }
         })

@@ -12,7 +12,7 @@ axios.interceptors.request.use(function (config) {
 });
 
 Vue.prototype.$http = axios;
-// axios.defaults.baseURL = 'http://localhost:8000/api/v1/';
+axios.defaults.baseURL = '/api';
 
 Vue.config.productionTip = false
 

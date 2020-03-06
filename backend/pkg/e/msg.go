@@ -12,6 +12,7 @@ var MsgFlags = map[int]string {
 	ERROR_AUTH_OTHER_ERROR: "未知错误",
 
 	ERROR_NOT_EXIST_USER: "该用户不存在",
+	ERROR_HAS_EXIST_USER: "已存在相同学号/工号成员",
 }
 
 func GetMsg(code int) string {

@@ -1,4 +1,4 @@
-package common
+package v1
 
 import (
 	"backend/models"
@@ -85,6 +85,15 @@ func CheckTeamManagePrivilege(token string) bool {
 func CheckConsolePrivilege(token string) bool {
 	privilege := GetPrivilege(token)
 	if privilege == 1 || privilege == 2 || privilege == 3 || privilege == 4 {
+		return true
+	} else {
+		return false
+	}
+}
+
+func CheckAdminPrivilege(token string) bool {
+	privilege := GetPrivilege(token)
+	if privilege == 1 || privilege == 2 {
 		return true
 	} else {
 		return false
