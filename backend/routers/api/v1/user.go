@@ -2,6 +2,8 @@ package v1
 
 import (
 	"backend/pkg/e"
+	"backend/routers/api/interfaceDataStruct"
+	"encoding/json"
 	"github.com/astaxie/beego/validation"
 	"github.com/gin-gonic/gin"
 	"github.com/unknwon/com"
@@ -10,10 +12,6 @@ import (
 
 	"backend/models"
 )
-
-func UserExistByUid(uid int)  {
-
-}
 
 func UserInfo(c *gin.Context)  {
 	uid := com.StrTo(c.Query("uid")).MustInt()
@@ -34,6 +32,44 @@ func UserInfo(c *gin.Context)  {
 		"code" : code,
 		"msg" : e.GetMsg(code),
 		"data" : data,
+	})
+}
+
+func UserInfoList(c *gin.Context)  {
+	var listConf interfaceDataStruct.QueryRecordInfo
+	err := json.Unmarshal([]byte(c.Query("conf")), &listConf)
+	if err == nil {
+		records, total := models.GetUserInfoList(listConf)
+		c.JSON(http.StatusOK, gin.H{
+			"code" : e.SUCCESS,
+			"msg" : e.GetMsg(e.SUCCESS),
+			"data" : gin.H{
+				"records": records,
+				"total": total,
+			},
+		})
+	} else {
+		c.JSON(http.StatusOK, gin.H{
+			"code" : e.ERROR,
+			"msg" : e.GetMsg(e.ERROR),
+			"data" : nil,
+		})
+	}
+}
+
+func UserGradeList(c *gin.Context) {
+	data := models.GetUserGradeList()
+	var gradeList []interfaceDataStruct.GradeInterface
+	for _, val := range data {
+		if val == "" {
+			continue
+		}
+		gradeList = append(gradeList, interfaceDataStruct.GradeInterface{Text: val, Value: val})
+	}
+	c.JSON(http.StatusOK, gin.H{
+		"code" : e.SUCCESS,
+		"msg" : e.GetMsg(e.SUCCESS),
+		"data" : gradeList,
 	})
 }
 

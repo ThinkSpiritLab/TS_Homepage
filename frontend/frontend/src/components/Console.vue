@@ -30,7 +30,7 @@
         </el-menu>
       </el-aside>
       <el-main>
-        <transition name="el-zoom-in-center">
+        <transition name="el-fade-in">
           <router-view></router-view>
         </transition>
       </el-main>

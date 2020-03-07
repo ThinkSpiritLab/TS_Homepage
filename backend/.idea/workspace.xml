@@ -2,27 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5d5ba5d7-4dde-4351-807f-66c25e22b460" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/frontend/src/components/Console/Home.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/frontend/src/components/Console/Users/AddUser.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/frontend/src/components/Console/Users/ListUser.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/routers/api/interfaceDataStruct/interfaceDataStruct.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/test.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/middleware/jwt/jwt.go" beforeDir="false" afterPath="$PROJECT_DIR$/middleware/jwt/jwt.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/auth.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/auth.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/user.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/e/code.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/e/code.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/e/msg.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/e/msg.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routers/api/v1/common/auth.go" beforeDir="false" afterPath="$PROJECT_DIR$/routers/api/v1/auth.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routers/api/v1/common/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/routers/api/v1/user.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routers/api/v1/console/consoleMenu.go" beforeDir="false" afterPath="$PROJECT_DIR$/routers/api/v1/Menu.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routers/api/v1/auth.go" beforeDir="false" afterPath="$PROJECT_DIR$/routers/api/v1/auth.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routers/api/v1/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/routers/api/v1/user.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routers/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/routers/router.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/frontend/src/components/Console.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/frontend/src/components/Console.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/frontend/src/components/Console/Users/ListUser.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/frontend/src/components/Console/Users/ListUser.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/frontend/src/components/Index/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/frontend/src/components/Index/Login.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/frontend/src/components/Index/accessDeny.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/frontend/src/components/accessDeny.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/frontend/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/frontend/src/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/frontend/src/plugins/element.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/frontend/src/plugins/element.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/frontend/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/frontend/src/router/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/frontend/vue.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/frontend/vue.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,12 +57,14 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\TS_system\backend\routers\api\interfaceDataStruct" />
+      <recent name="F:\TS_system\backend\test" />
       <recent name="F:\TS_system\backend\routers\api\v1" />
       <recent name="F:\TS_system\backend\routers\api\v1\console" />
       <recent name="F:\TS_system\backend\routers\api\v1\common" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Go Build.go build backend">
     <configuration name="go build backend" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="backend" />
       <working_directory value="$PROJECT_DIR$" />
@@ -82,9 +74,19 @@
       <directory value="$PROJECT_DIR$/" />
       <method v="2" />
     </configuration>
+    <configuration name="go build test.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="backend" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/test/test.go" />
+      <package value="backend" />
+      <directory value="$PROJECT_DIR$/" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Go Build.go build backend" />
+        <item itemvalue="Go Build.go build test.go" />
       </list>
     </recent_temporary>
   </component>
@@ -100,38 +102,42 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="544" y="122" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1583488764223" />
-    <state width="1493" height="216" key="GridCell.Tab.0.bottom" timestamp="1583495524363">
+    <state x="477" y="47" key="#go_build_test.go" timestamp="1583568558867">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="216" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1583495524363" />
-    <state width="1493" height="216" key="GridCell.Tab.0.center" timestamp="1583495524363">
+    <state x="477" y="47" key="#go_build_test.go/0.0.1536.824@0.0.1536.824" timestamp="1583568558867" />
+    <state width="1493" height="194" key="GridCell.Tab.0.bottom" timestamp="1583582840915">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="216" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1583495524363" />
-    <state width="1493" height="216" key="GridCell.Tab.0.left" timestamp="1583495524363">
+    <state width="1493" height="194" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1583582840915" />
+    <state width="1493" height="194" key="GridCell.Tab.0.center" timestamp="1583582840915">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="216" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1583495524363" />
-    <state width="1493" height="216" key="GridCell.Tab.0.right" timestamp="1583495524363">
+    <state width="1493" height="194" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1583582840915" />
+    <state width="1493" height="194" key="GridCell.Tab.0.left" timestamp="1583582840915">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="216" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1583495524363" />
-    <state width="1493" height="216" key="GridCell.Tab.1.bottom" timestamp="1583495524364">
+    <state width="1493" height="194" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1583582840915" />
+    <state width="1493" height="194" key="GridCell.Tab.0.right" timestamp="1583582840915">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="216" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1583495524364" />
-    <state width="1493" height="216" key="GridCell.Tab.1.center" timestamp="1583495524363">
+    <state width="1493" height="194" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1583582840915" />
+    <state width="1493" height="194" key="GridCell.Tab.1.bottom" timestamp="1583582840915">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="216" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1583495524363" />
-    <state width="1493" height="216" key="GridCell.Tab.1.left" timestamp="1583495524363">
+    <state width="1493" height="194" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1583582840915" />
+    <state width="1493" height="194" key="GridCell.Tab.1.center" timestamp="1583582840915">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="216" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1583495524363" />
-    <state width="1493" height="216" key="GridCell.Tab.1.right" timestamp="1583495524363">
+    <state width="1493" height="194" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1583582840915" />
+    <state width="1493" height="194" key="GridCell.Tab.1.left" timestamp="1583582840915">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="216" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1583495524363" />
+    <state width="1493" height="194" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1583582840915" />
+    <state width="1493" height="194" key="GridCell.Tab.1.right" timestamp="1583582840915">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="194" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1583582840915" />
     <state x="270" y="55" key="SettingsEditor" timestamp="1583226488092">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -140,10 +146,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="775" height="419" key="XDebugger.FullValuePopup/0.0.1536.824@0.0.1536.824" timestamp="1583291439742" />
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1583310720676">
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1583574409594">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1583310720676" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1583574409594" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

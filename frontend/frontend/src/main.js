@@ -10,6 +10,13 @@ axios.interceptors.request.use(function (config) {
   config.headers.Authorization = window.sessionStorage.getItem('Authorization');
   return config;
 });
+axios.interceptors.response.use(function (response) {
+    return response;
+  }, function (error) {
+    this.$message.warning(error)
+    window.sessionStorage.clear();
+    this.$router.push("/index")
+  });
 
 Vue.prototype.$http = axios;
 axios.defaults.baseURL = '/api';

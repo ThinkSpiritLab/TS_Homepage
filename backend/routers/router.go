@@ -24,7 +24,9 @@ func InitRouter() *gin.Engine {
 		apiV1.POST("/auth_login", v1.AuthLogin)
 
 		apiV1.GET("/user_info", v1.UserInfo)
+		apiV1.GET("/user_info_list", v1.UserInfoList)
 		apiV1.GET("/user_detail", v1.UserDetail)
+		apiV1.GET("/user_grade_list", v1.UserGradeList)
 
 		apiV1.GET("/console/menu_list", jwt.JWT_console(), v1.ConsoleMenu)
 

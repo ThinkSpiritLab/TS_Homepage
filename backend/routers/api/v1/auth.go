@@ -2,6 +2,7 @@ package v1
 
 import (
 	"backend/models"
+	"backend/routers/api/interfaceDataStruct"
 	"github.com/astaxie/beego/validation"
 	"github.com/gin-gonic/gin"
 	"log"
@@ -12,13 +13,8 @@ import (
 
 )
 
-type Auth struct {
-	Stid string `valid:"Required; MaxSize(50)"`
-	Psw string `valid:"Required; MaxSize(50)"`
-}
-
 func AuthLogin(c *gin.Context) {
-	var auth Auth
+	var auth interfaceDataStruct.Auth
 	err := c.BindJSON(&auth)
 	code := e.INVALID_PARAMS
 	data := make(map[string]interface{})

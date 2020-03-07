@@ -1,11 +1,163 @@
 <template>
   <el-card class="box-card">
+    <el-page-header @back="goToHome" content="成员列表"></el-page-header>
+    <div>
+      <el-row :gutter="20">
+        <el-col :span="10">
+          <el-input placeholder="输入 学号/工号 或 姓名 以检索" v-model="queryRecordInfo.recordRule.keyword"
+                    class="input-with-select" clearable @clear="clearFilter" size="small">
+            <el-button slot="append" icon="el-icon-search" @click="searchHandler"></el-button>
+          </el-input>
+        </el-col>
+        <el-col :span="2">
+          <el-button @click="clearFilter" size="small">清除筛选</el-button>
+        </el-col>
+      </el-row>
+      <el-table ref="filterTable" :data="recordsList" style="width: 100%;" size="small" :cell-style="{padding:'5px'}"
+                @filter-change="filterHandler" @sort-change="sortHandler">
+        <el-table-column prop="stid" label="学号/工号" width="200" sortable="custom"></el-table-column>
+        <el-table-column prop="name" label="姓名" width="200"></el-table-column>
+        <el-table-column prop="grade" label="年级" width="150" sortable="custom" column-key="grade"
+                         :filters="filterList.grade"></el-table-column>
+        <el-table-column prop="identity" label="身份" width="200" column-key="identity"
+                         :filters="filterList.identity">
+          <template slot-scope="scope">
+            <el-alert title="教师/教练" type="error" effect="dark" :closable="false"
+                      v-if="scope.row.identity===1"></el-alert>
+            <el-alert title="正式成员" type="success" effect="dark" :closable="false"
+                      v-else-if="scope.row.identity===2"></el-alert>
+            <el-alert title="预备成员" type="info" effect="dark" :closable="false"
+                      v-else-if="scope.row.identity===3"></el-alert>
+          </template>
+        </el-table-column>
+        <el-table-column prop="privilege" label="权限" width="200" column-key="privilege"
+                         :filters="filterList.privilege">
+          <template slot-scope="scope">
+            <el-alert title="root" type="error" effect="dark" :closable="false"
+                      v-if="scope.row.privilege===1"></el-alert>
+            <el-alert title="超级管理员" type="success" effect="dark" :closable="false"
+                      v-else-if="scope.row.privilege===2"></el-alert>
+            <el-alert title="团队建设管理员" type="warning" effect="dark" :closable="false"
+                      v-else-if="scope.row.privilege===3"></el-alert>
+            <el-alert title="竞赛训练管理员" type="warning" effect="dark" :closable="false"
+                      v-else-if="scope.row.privilege===4"></el-alert>
+            <el-alert title="普通权限" type="info" effect="dark" :closable="false"
+                      v-else-if="scope.row.privilege===5"></el-alert>
+          </template>
+        </el-table-column>
+        <el-table-column prop="operation" label="操作" width="200"></el-table-column>
+      </el-table>
+      <el-pagination @current-change="handleCurrentChange" :current-page.sync="paginationInfo.currentPage"
+              :page-size="paginationInfo.pageSize" layout="prev, pager, next, jumper" :total="paginationInfo.totalRecords">
+      </el-pagination>
+    </div>
   </el-card>
 </template>
 
 <script>
   export default {
-    name: "ListUser"
+    name: "ListUser",
+    data() {
+      return {
+        paginationInfo: {
+          currentPage: 1,
+          totalRecords: 1,
+          pageSize: 8
+        },
+        queryRecordInfo: {
+          sortRule: {
+            column: '',
+            order: ''
+          },
+          filterRule: {
+            identity: [],
+            privilege: [],
+            grade: []
+          },
+          recordRule: {
+            size: 0,
+            offset: 0,
+            keyword: '' // 搜索用
+          }
+        },
+        recordsList: [],
+        filterList: {
+          grade: [],
+          identity: [
+            {text: '教师/教练', value: 1},
+            {text: '正式成员', value: 2},
+            {text: '预备成员', value: 3},
+          ],
+          privilege: [
+            {text: 'root', value: 1},
+            {text: '超级管理员', value: 2},
+            {text: '团队建设管理员', value: 3},
+            {text: '竞赛训练管理员', value: 4},
+            {text: '普通权限', value: 5},
+          ]
+        }
+      }
+    },
+    methods: {
+      goToHome: function () {
+        this.$router.push('/console_home');
+      },
+      clearFilter: function () {
+        this.queryRecordInfo.sortRule.column = this.queryRecordInfo.sortRule.order = '';
+        this.queryRecordInfo.filterRule.identity = this.queryRecordInfo.filterRule.privilege = this.queryRecordInfo.filterRule.grade = [];
+        this.queryRecordInfo.recordRule.size = this.queryRecordInfo.recordRule.offset = 0;
+        this.queryRecordInfo.recordRule.keyword = '';
+        this.getRecordList()
+      },
+      filterHandler(obj) {
+        const itemName = Object.keys(obj)[0];
+        this.queryRecordInfo["filterRule"][itemName] = obj[itemName];
+        this.getRecordList()
+      },
+      sortHandler(obj) {
+        if (obj.order !== null) {
+          if (obj.order === "descending")
+            obj.order = "desc";
+          else
+            obj.order = "asc";
+          this.queryRecordInfo["sortRule"]["column"] = obj.prop;
+          this.queryRecordInfo["sortRule"]["order"] = obj.order;
+        } else {
+          this.queryRecordInfo["sortRule"]["column"] = '';
+          this.queryRecordInfo["sortRule"]["order"] = '';
+        }
+        this.getRecordList()
+      },
+      searchHandler: function() {
+        const tmp = this.queryRecordInfo.recordRule.keyword;
+        this.clearFilter();
+        this.queryRecordInfo.recordRule.keyword = tmp;
+        this.getRecordList()
+      },
+      handleCurrentChange: function (val) {
+        this.getRecordList()
+      },
+      getRecordList: async function () {
+        this.queryRecordInfo.recordRule.offset = (this.paginationInfo.currentPage - 1)*this.paginationInfo.pageSize;
+        this.queryRecordInfo.recordRule.size = this.paginationInfo.pageSize;
+        const {data: res} = await this.$http.get('user_info_list',
+            {params: {conf: JSON.stringify(this.queryRecordInfo)}});
+        if (res.code !== 200)
+          return this.$message.error('获取成员列表失败')
+        this.recordsList = res.data.records;
+        this.paginationInfo.totalRecords = res.data.total;
+      },
+      getGradeList: async function () {
+        const {data: res} = await this.$http.get('user_grade_list');
+        if (res.code !== 200)
+          return this.$message.error('获取成员列表失败')
+        this.filterList.grade = res.data
+      }
+    },
+    created() {
+      this.getGradeList();
+      this.getRecordList();
+    }
   }
 </script>
 
@@ -15,7 +167,6 @@
     position: relative;
     width: 96%;
     left: 2%;
-    top: 5%;
     padding: 0;
   }
 </style>
