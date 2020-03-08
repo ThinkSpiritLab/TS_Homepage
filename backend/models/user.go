@@ -22,6 +22,12 @@ type UserDetail struct {
 	Introduction string `gorm:"type:text" json:"introduction"` // []byte
 }
 
+func GetPrivilegeByUid(uid int) int {
+	var tmp []int
+	db.Where("uid = ?", uid).Model(&User{}).Pluck("Privilege", &tmp)
+	return tmp[0]
+}
+
 func CheckUserExistByStid(stid string) (flag bool) {
 	var user User
 	db.Where("stid = ?", stid).First(&user)
@@ -48,7 +54,7 @@ func GetUserInfoList(info interfaceDataStruct.QueryRecordInfo) (users []User, to
 	if len(info.RecordRule.Keyword) != 0 {
 		DB = DB.Where("name LIKE ? or stid LIKE ?", "%"+info.RecordRule.Keyword+"%", "%"+info.RecordRule.Keyword+"%")
 	}
-	DB.Find(&users).Count(&total)
+	DB.Model(&User{}).Count(&total)
 	if info.SortRule.Column != "" && info.SortRule.Order != ""{
 		DB = DB.Order(info.SortRule.Column + " "+ info.SortRule.Order)
 	} else {
@@ -88,4 +94,18 @@ func AddUserPassword(upsw UserPassword) bool {
 func AddUserDetail(udetail UserDetail) bool {
 	db.Create(&udetail)
 	return udetail.Uid>0
+}
+
+func DeleteUser(uid int) {
+	db.Where("uid=?", uid).Delete(&UserPassword{}).Delete(&UserDetail{}).Delete(&User{})
+}
+
+func EditUser(user User) {
+	db.Model(&user).Omit("uid", "stid").Updates(&user)
+}
+
+func ResetUserPswByUid(uid int) {
+	var user User
+	db.Select("stid, uid").Where("uid=?", uid).First(&user)
+	db.Model(&UserPassword{}).Where("uid=?", uid).Update("psw", user.Stid)
 }

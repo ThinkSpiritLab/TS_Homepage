@@ -24,6 +24,15 @@
                   <el-input v-model="addForm.user.grade"></el-input>
                 </el-form-item>
               </transition>
+              <el-form-item label="权限" prop="privilege">
+                <el-select v-model="addForm.user.privilege" placeholder="请选择">
+                  <el-option key="p1" label="root" value="1" v-if="userTipInfo.privilege===1"></el-option>
+                  <el-option key="p2" label="超级管理员" value="2" v-if="userTipInfo.privilege===1"></el-option>
+                  <el-option key="p3" label="团队建设管理员" value="3" v-if="userTipInfo.privilege<=2"></el-option>
+                  <el-option key="p4" label="竞赛训练管理员" value="4" v-if="userTipInfo.privilege<=2"></el-option>
+                  <el-option key="p5" label="普通权限" value="5" v-if="userTipInfo.privilege<=3"></el-option>
+                </el-select>
+              </el-form-item>
             </el-form>
             <el-form :model="addForm.user_password" :rules="addFormRules" :disabled="loading"
                      ref="addFormRefUserPassword" label-width="90px">
@@ -50,7 +59,7 @@
                 <el-input v-model="addForm.user_detail.URL"></el-input>
               </el-form-item>
               <el-form-item label="简介" prop="introduction">
-                <el-input type="textarea" :rows="4" v-model="addForm.user_detail.introduction">
+                <el-input type="textarea" :rows="5" v-model="addForm.user_detail.introduction">
                 </el-input>
               </el-form-item>
             </el-form>
@@ -66,6 +75,7 @@
 
 <script>
   export default {
+    props: ['userTipInfo'],
     name: "AddUser",
     data() {
       const checkEmail = (rule, value, cb) => {
@@ -93,8 +103,9 @@
           user: {
             stid: '',
             name: '',
-            identity: '',
+            identity: '2',
             grade: '',
+            privilege: '5',
           },
           user_password: {
             psw: ''
@@ -112,7 +123,7 @@
             {required: true, message: '请输入学号/工号', trigger: 'blur'},
           ],
           name: [
-            {required: true, message: '请输入密码姓名', trigger: 'blur'},
+            {required: true, message: '请输入姓名', trigger: 'blur'},
           ],
           identity: [
             {required: true, message: '请选择身份', trigger: 'blur'},
@@ -132,29 +143,28 @@
           ]
         },
         loading: false,
-        formValid: false
       };
     },
     methods: {
       addUser: async function () {
-        // this.loading = true;
-        this.formValid = true;
+        this.loading = true;
+        let formValid = true;
         this.$refs.addFormRefUser.validate((valid) => {
           if (!valid) {
-            this.formValid = false
+            formValid = false
           }
         });
         this.$refs.addFormRefUserPassword.validate((valid) => {
           if(!valid) {
-            this.formValid = false
+            formValid = false
           }
         });
         this.$refs.addFormRefUserDetail.validate((valid) => {
           if(!valid) {
-            this.formValid = false
+            formValid = false
           }
         });
-        if (this.formValid) {
+        if (formValid) {
           const { data:result } = await this.$http.post('/console/user_regist', this.addForm);
           if (result.code !== 200) {
             this.$message.error(result.msg);

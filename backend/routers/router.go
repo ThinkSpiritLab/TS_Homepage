@@ -32,6 +32,9 @@ func InitRouter() *gin.Engine {
 
 
 		apiV1.POST("/console/user_regist", jwt.JWT_teamManage(), v1.UserAdd)
+		apiV1.DELETE("/console/user_delete", jwt.JWT_teamManage(), v1.UserDelete)
+		apiV1.POST("/console/user_edit", jwt.JWT_teamManage(), v1.UserEdit)
+		apiV1.POST("/console/user_reset_psw", jwt.JWT_teamManage(), v1.UserResetPsw)
 
 		apiV1.GET("/console/contest_test", jwt.JWT_contest(),func(c *gin.Context) {
 			c.JSON(200, gin.H{

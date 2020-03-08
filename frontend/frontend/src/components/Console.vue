@@ -1,8 +1,8 @@
 <template>
-  <el-container class="home-container">
+  <el-container class="home-container" v-cloak>
     <el-header>
       <div>
-        <img src="../assets/TS_logo.png" alt="TS_logo">
+        <img src="../assets/TS_logo.png" alt="TS_logo" class="topIMG">
         <span>Think Spirit 控制台</span>
       </div>
       <div>
@@ -13,14 +13,13 @@
     </el-header>
     <el-container>
       <el-aside width="200px">
-        <el-menu background-color="#333744" text-color="#fff" active-text-color="#409BFF"
-                :unique-opened="false" :router="true" :default-active="activePath">
-          <el-submenu :index="'console_'+item.mid" v-for="item in menuList" :key="item.mid">
+        <el-menu el-menu-vertical-demo :unique-opened="false" :router="true" :default-active="$route.path">
+          <el-submenu :index="'/console_'+item.mid" v-for="item in menuList" :key="item.mid">
             <template slot="title">
               <span>{{item.mname}}</span>
             </template>
-            <el-menu-item :index="'console_'+subItem.path" v-for="subItem in item.children"
-                          :key="subItem.mid" @click="savaNavState(subItem.path)">
+            <el-menu-item :index="'/console_'+subItem.path" v-for="subItem in item.children"
+                          :key="subItem.mid">
               <template slot="title">
                 <i class="el-icon-menu"></i>
                 <span>{{subItem.mname}}</span>
@@ -30,9 +29,9 @@
         </el-menu>
       </el-aside>
       <el-main>
-        <transition name="el-fade-in">
-          <router-view></router-view>
-        </transition>
+<!--        <transition name="el-fade-in">-->
+          <router-view :userTipInfo="userTipInfo"></router-view>
+<!--        </transition>-->
       </el-main>
     </el-container>
   </el-container>
@@ -51,13 +50,11 @@
           privilege: 0
         },
         menuList: [],
-        activePath: ''
       }
     },
     created() {
       this.checkLoginState();
       this.getMenuList();
-      this.activePath = window.sessionStorage.getItem('activePath');
     },
     methods: {
       checkLoginState: function () {
@@ -76,14 +73,10 @@
         const {data: res} = await this.$http.get('/console/menu_list')
         if (res.code !== 200) {
           this.$message.error(res.msg);
-          await this.$router.push('/main');
+          this.log_out();
         }
         this.menuList = res.data;
       },
-      savaNavState: function (activePath) {
-        window.sessionStorage.setItem('activePath', activePath);
-        this.activePath = activePath;
-      }
     },
     computed: {
       /**
@@ -119,8 +112,11 @@
     }
   }
   .el-aside {
-    background-color: #333744;
+    background-color: #EAEDF1;
     .el-menu {
+      margin-top: 10px;
+      margin-left: 10px;
+      margin-bottom: 10px;
       border-right: 0;
     }
   }
@@ -139,7 +135,7 @@
     letter-spacing: 0.2em;
     cursor: pointer;
   }
-  img {
+  .topIMG {
     width: 50px;
     height: 50px;
     border-radius: 50%;

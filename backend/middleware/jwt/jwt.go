@@ -38,7 +38,7 @@ func JWT_contest() gin.HandlerFunc {
 		if code == e.SUCCESS {
 			c.Next()
 		} else {
-			c.JSON(http.StatusUnauthorized, gin.H{
+			c.JSON(http.StatusOK, gin.H{
 				"code" : code,
 				"msg" : e.GetMsg(code),
 				"data" : nil,
@@ -58,7 +58,7 @@ func JWT_teamManage() gin.HandlerFunc {
 		if code == e.SUCCESS {
 			c.Next()
 		} else {
-			c.JSON(http.StatusUnauthorized, gin.H{
+			c.JSON(http.StatusOK, gin.H{
 				"code" : code,
 				"msg" : e.GetMsg(code),
 				"data" : nil,
@@ -78,7 +78,7 @@ func JWT_console() gin.HandlerFunc {
 		if code == e.SUCCESS {
 			c.Next()
 		} else {
-			c.JSON(http.StatusUnauthorized, gin.H{
+			c.JSON(http.StatusOK, gin.H{
 				"code" : code,
 				"msg" : e.GetMsg(code),
 				"data" : nil,
@@ -98,7 +98,7 @@ func JWT_admin() gin.HandlerFunc {
 		if code == e.SUCCESS {
 			c.Next()
 		} else {
-			c.JSON(http.StatusUnauthorized, gin.H{
+			c.JSON(http.StatusOK, gin.H{
 				"code" : code,
 				"msg" : e.GetMsg(code),
 				"data" : nil,

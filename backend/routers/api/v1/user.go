@@ -107,22 +107,87 @@ func UserAdd(c *gin.Context)  {
 			code = e.ERROR_HAS_EXIST_USER
 		} else {
 			identity, _ := strconv.Atoi(user["identity"])
-			uid, flag := models.AddUser(models.User{Stid: user["stid"], Name: user["name"],
-				Grade: user["grade"], Identity: identity, Privilege: 5})
-			if flag {
-				userPassword := addForm["user_password"]
-				flag = models.AddUserPassword(models.UserPassword{Uid: uid, Psw: userPassword["psw"]})
+			privilege, _ := strconv.Atoi(user["privilege"])
+			thisPrivilege := GetPrivilege(c.Request.Header.Get("Authorization"))
+			if (privilege==1||privilege==2)&& thisPrivilege !=1 {
+				code = e.ERROR_AUTH_CHECK_TOKEN_FAIL
+			} else {
+				uid, flag := models.AddUser(models.User{Stid: user["stid"], Name: user["name"],
+					Grade: user["grade"], Identity: identity, Privilege: privilege})
 				if flag {
-					userDetail := addForm["user_detail"]
-					flag = models.AddUserDetail(models.UserDetail{
-						Uid: uid, Email: userDetail["email"], QQ: userDetail["QQ"], URL: userDetail["URL"],
-						Mobile: userDetail["mobile"], Introduction: userDetail["introduction"]})
+					userPassword := addForm["user_password"]
+					flag = models.AddUserPassword(models.UserPassword{Uid: uid, Psw: userPassword["psw"]})
 					if flag {
-						code = e.SUCCESS
+						userDetail := addForm["user_detail"]
+						flag = models.AddUserDetail(models.UserDetail{
+							Uid: uid, Email: userDetail["email"], QQ: userDetail["QQ"], URL: userDetail["URL"],
+							Mobile: userDetail["mobile"], Introduction: userDetail["introduction"]})
+						if flag {
+							code = e.SUCCESS
+						}
 					}
 				}
 			}
 		}
+	}
+	c.JSON(http.StatusOK, gin.H{
+		"code" : code,
+		"msg" : e.GetMsg(code),
+		"data" : nil,
+	})
+}
+
+func UserDelete(c *gin.Context)  {
+	uid := com.StrTo(c.Query("uid")).MustInt()
+	valid := validation.Validation{}
+	valid.Required(uid, "uid")
+	code := e.INVALID_PARAMS
+	thisPrivilege := GetPrivilege(c.Request.Header.Get("Authorization"))
+	deletedPrivilege := models.GetPrivilegeByUid(uid)
+	if thisPrivilege >= deletedPrivilege {
+		code = e.ERROR_AUTH_CHECK_TOKEN_FAIL
+	} else if !valid.HasErrors() {
+			models.DeleteUser(uid)
+			code = e.SUCCESS
+		}
+	c.JSON(http.StatusOK, gin.H{
+		"code" : code,
+		"msg" : e.GetMsg(code),
+		"data" : nil,
+	})
+}
+
+func UserEdit(c *gin.Context)  {
+	var user models.User
+	c.BindJSON(&user)
+	code := e.SUCCESS
+	thisPrivilege := GetPrivilege(c.Request.Header.Get("Authorization"))
+	editedPrivilege := models.GetPrivilegeByUid(user.Uid)
+	if thisPrivilege>=editedPrivilege && editedPrivilege!=user.Privilege {
+		code = e.ERROR_AUTH_CHECK_TOKEN_FAIL
+	} else {
+		models.EditUser(user)
+		code = e.SUCCESS
+	}
+	c.JSON(http.StatusOK, gin.H{
+		"code" : code,
+		"msg" : e.GetMsg(code),
+		"data" : nil,
+	})
+}
+
+func UserResetPsw(c *gin.Context)  {
+	code := e.ERROR
+	var tmp map[string]int
+	c.BindJSON(&tmp)
+	uid := tmp["uid"]
+	thisPrivilege := GetPrivilege(c.Request.Header.Get("Authorization"))
+	resetPrivilege := models.GetPrivilegeByUid(uid)
+	if thisPrivilege >= resetPrivilege {
+		code = e.ERROR_AUTH_CHECK_TOKEN_FAIL
+	} else {
+		models.ResetUserPswByUid(uid)
+		code = e.SUCCESS
 	}
 	c.JSON(http.StatusOK, gin.H{
 		"code" : code,

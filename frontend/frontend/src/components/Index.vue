@@ -1,13 +1,37 @@
 <template>
   <el-container class="index-container">
-    <el-header>
-      <el-row type="flex">
-        <el-col :span="4"><div>LOGO</div></el-col>
-        <el-col :span="15"><div>Menu</div></el-col>
+    <el-header style="height: 75px">
+      <el-row type="flex" style="margin-top: 20px; height: 55px">
+        <el-col :span="3">
+          <div>
+            <img src="../assets/TS_logo.png" alt="TS_logo" class="topIMG1">
+            <span style="margin-left: 5px">Think Spirit Lab</span>
+          </div>
+        </el-col>
+        <el-col :span="4">
+          <div>
+            <img src="../assets/icpc.png" alt="TS_logo" class="topIMG2">
+            <span style="margin-left: 10px">NUIST CPC Team</span>
+          </div>
+        </el-col>
+        <el-col :span="12">
+          <div style="margin-right: auto; margin-left: auto">
+            <el-menu :default-active="$route.path" class="el-menu-demo" mode="horizontal">
+              <el-menu-item index="/main">首页</el-menu-item>
+              <el-menu-item index="/announcement">公告</el-menu-item>
+              <el-menu-item index="/members">成员</el-menu-item>
+              <el-menu-item index="/contests">竞赛历史</el-menu-item>
+              <el-menu-item index="/news">活动与新闻</el-menu-item>
+              <el-menu-item index="/trains">训练与积分</el-menu-item>
+              <el-menu-item index="/publicity">内部公示</el-menu-item>
+              <el-menu-item index="/resource">资源</el-menu-item>
+            </el-menu>
+          </div>
+        </el-col>
         <el-col :span="5">
               <div v-if="hasLogIn">
             <el-dropdown @command="handleUserTipCommand">
-              <el-button type="info">
+              <el-button type="primary">
                 {{UserTipInfo}}<i class="el-icon-arrow-down el-icon--right"></i>
               </el-button>
               <el-dropdown-menu slot="dropdown">
@@ -46,7 +70,7 @@
           identity: 0,
           privilege: 0
         },
-        hasLogIn: false
+        hasLogIn: false,
       }
     },
     methods: {
@@ -102,7 +126,7 @@
     height: 100%;
   }
   .el-header {
-    background-color: #99a9bf;
+    background-color: #F4F4F4;
     .el-row {
       height: 60px;
       div {
@@ -110,6 +134,16 @@
         align-items: center;
       }
     }
+  }
+  .topIMG1 {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+  .topIMG2 {
+    width: 84px;
+    height: 50px;
+    border-radius: 20%;
   }
   .el-main {
     background-color: #F4F4F4;
