@@ -60,6 +60,15 @@ func GetPrivilege(token string) int {
 	}
 }
 
+func CheckTSMember(token string) bool {
+	privilege := GetPrivilege(token)
+	if privilege == 1 || privilege == 2 || privilege == 3 || privilege == 4 || privilege == 5 {
+		return true
+	} else {
+		return false
+	}
+}
+
 func CheckContestPrivilege(token string) bool {
 	privilege := GetPrivilege(token)
 	if privilege == 1 || privilege == 2 || privilege == 4 {

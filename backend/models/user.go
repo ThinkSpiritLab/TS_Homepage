@@ -56,9 +56,9 @@ func GetUserInfoList(info interfaceDataStruct.QueryRecordInfo) (users []User, to
 	}
 	DB.Model(&User{}).Count(&total)
 	if info.SortRule.Column != "" && info.SortRule.Order != ""{
-		DB = DB.Order(info.SortRule.Column + " "+ info.SortRule.Order)
+		DB = DB.Order(info.SortRule.Column + " "+ info.SortRule.Order + ", uid asc")
 	} else {
-		DB = DB.Order("privilege asc")
+		DB = DB.Order("privilege asc, uid asc")
 	}
 	if info.RecordRule.Offset != 0 {
 		DB = DB.Offset(info.RecordRule.Offset)
@@ -108,4 +108,9 @@ func ResetUserPswByUid(uid int) {
 	var user User
 	db.Select("stid, uid").Where("uid=?", uid).First(&user)
 	db.Model(&UserPassword{}).Where("uid=?", uid).Update("psw", user.Stid)
+}
+
+func GetNameByDimStid(diStid string) (users []User){
+	db.Select("name, stid").Where("stid LIKE ?", diStid+"%").Find(&users)
+	return
 }

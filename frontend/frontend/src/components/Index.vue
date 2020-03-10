@@ -9,7 +9,7 @@
           </div>
         </el-col>
         <el-col :span="4">
-          <div>
+          <div style="margin-left: 20px">
             <img src="../assets/icpc.png" alt="TS_logo" class="topIMG2">
             <span style="margin-left: 10px">NUIST CPC Team</span>
           </div>
@@ -22,9 +22,8 @@
               <el-menu-item index="/members">成员</el-menu-item>
               <el-menu-item index="/contests">竞赛历史</el-menu-item>
               <el-menu-item index="/news">活动与新闻</el-menu-item>
-              <el-menu-item index="/trains">训练与积分</el-menu-item>
-              <el-menu-item index="/publicity">内部公示</el-menu-item>
-              <el-menu-item index="/resource">资源</el-menu-item>
+              <el-menu-item index="/trains">训练与学习</el-menu-item>
+              <el-menu-item index="/publicity">内部信息</el-menu-item>
             </el-menu>
           </div>
         </el-col>
@@ -143,7 +142,7 @@
   .topIMG2 {
     width: 84px;
     height: 50px;
-    border-radius: 20%;
+    /*border-radius: 20%;*/
   }
   .el-main {
     background-color: #F4F4F4;

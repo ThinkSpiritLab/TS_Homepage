@@ -9,6 +9,11 @@ import (
 
 type App struct {
 	JwtSecret string
+	PublicDIR string
+	ImagePrefixUrl string
+	ImageSavePath string
+	ImageMaxSize int
+	ImageAllowExts []string
 }
 
 var AppSetting = &App{}
@@ -44,6 +49,7 @@ func Setup() {
 	}
 
 	mapTo("app", AppSetting)
+	AppSetting.ImageSavePath = AppSetting.PublicDIR + AppSetting.ImageSavePath
 	mapTo("server", ServerSetting)
 	mapTo("database", DatabaseSetting)
 

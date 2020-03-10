@@ -12,7 +12,7 @@
       </div>
     </el-header>
     <el-container>
-      <el-aside width="200px">
+      <el-aside width="210px">
         <el-menu el-menu-vertical-demo :unique-opened="false" :router="true" :default-active="$route.path">
           <el-submenu :index="'/console_'+item.mid" v-for="item in menuList" :key="item.mid">
             <template slot="title">

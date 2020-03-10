@@ -1,6 +1,7 @@
 <template>
     <el-card class="box-card">
       <el-page-header @back="goToHome" content="添加成员"></el-page-header>
+      <el-divider></el-divider>
       <el-row :gutter="100">
         <el-col :span="12">
           <div class="divForm">

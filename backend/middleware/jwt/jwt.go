@@ -27,6 +27,27 @@ func checkTokenValid(token string) (code int){
 	return code
 }
 
+func JWT_TS_member() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		fmt.Println(c)
+		token := c.Request.Header.Get("Authorization")
+		code := checkTokenValid(token)
+		if code == e.SUCCESS && !v1.CheckTSMember(token) {
+			code = e.ERROR_AUTH_CHECK_TOKEN_FAIL
+		}
+		if code == e.SUCCESS {
+			c.Next()
+		} else {
+			c.JSON(http.StatusOK, gin.H{
+				"code" : code,
+				"msg" : e.GetMsg(code),
+				"data" : nil,
+			})
+			c.Abort()
+		}
+	}
+}
+
 func JWT_contest() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		fmt.Println(c)

@@ -13,6 +13,10 @@ var MsgFlags = map[int]string {
 
 	ERROR_NOT_EXIST_USER: "该用户不存在",
 	ERROR_HAS_EXIST_USER: "已存在相同学号/工号成员",
+
+	ERROR_UPLOAD_IMAGE_TOO_LARGE: "图片大小超过 5 MB",
+	ERROR_UPLOAD_IMAGE_WRONG_TYPE: "仅允许 .jpg .jpeg .png 格式图片",
+	ERROR_UPLOAD_IMAGE_FAIL: "上传图片失败",
 }
 
 func GetMsg(code int) string {

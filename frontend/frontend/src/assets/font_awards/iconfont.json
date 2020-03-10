@@ -1,0 +1,44 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "541821",
+      "name": "铁牌",
+      "font_class": "tiepai",
+      "unicode": "e64f",
+      "unicode_decimal": 58959
+    },
+    {
+      "icon_id": "3135692",
+      "name": "银牌",
+      "font_class": "yinpai",
+      "unicode": "e947",
+      "unicode_decimal": 59719
+    },
+    {
+      "icon_id": "4769333",
+      "name": "金牌",
+      "font_class": "jinpai",
+      "unicode": "e621",
+      "unicode_decimal": 58913
+    },
+    {
+      "icon_id": "4769336",
+      "name": "铜牌",
+      "font_class": "tongpai",
+      "unicode": "e623",
+      "unicode_decimal": 58915
+    },
+    {
+      "icon_id": "7086710",
+      "name": "特等奖",
+      "font_class": "tedengjiang",
+      "unicode": "e60c",
+      "unicode_decimal": 58892
+    }
+  ]
+}

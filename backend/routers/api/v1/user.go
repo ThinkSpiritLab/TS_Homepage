@@ -13,6 +13,21 @@ import (
 	"backend/models"
 )
 
+func NameByDimStid(c *gin.Context) {
+	dimStid := c.Query("stid")
+	code := e.SUCCESS
+	lists := models.GetNameByDimStid(dimStid)
+	var data []map[string]string
+	for _, item := range lists {
+		data = append(data, map[string]string{"value": item.Stid, "name": item.Name})
+	}
+	c.JSON(http.StatusOK, gin.H{
+		"code" : code,
+		"msg" : e.GetMsg(code),
+		"data" : data,
+	})
+}
+
 func UserInfo(c *gin.Context)  {
 	uid := com.StrTo(c.Query("uid")).MustInt()
 	valid := validation.Validation{}
