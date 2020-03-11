@@ -1,6 +1,7 @@
 package setting
 
 import (
+	"fmt"
 	"log"
 	"time"
 
@@ -49,6 +50,7 @@ func Setup() {
 	}
 
 	mapTo("app", AppSetting)
+	fmt.Println(AppSetting)
 	AppSetting.ImageSavePath = AppSetting.PublicDIR + AppSetting.ImageSavePath
 	mapTo("server", ServerSetting)
 	mapTo("database", DatabaseSetting)

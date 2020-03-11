@@ -26,6 +26,8 @@ func InitRouter() *gin.Engine {
 		apiV1.GET("/user_detail", v1.UserDetail)
 		apiV1.GET("/user_grade_list", v1.UserGradeList)
 		apiV1.GET("/user_name_by_dim_stid", v1.NameByDimStid)
+		apiV1.GET("/contest_list_brief", v1.ContestListBrief)
+		apiV1.GET("/contest_extras", v1.ContestExtras)
 
 		apiV1.GET("/console/menu_list", jwt.JWT_console(), v1.ConsoleMenu)
 
@@ -35,6 +37,8 @@ func InitRouter() *gin.Engine {
 		apiV1.POST("/console/user_reset_psw", jwt.JWT_teamManage(), v1.UserResetPsw)
 
 		apiV1.POST("/contest/contest_add", jwt.JWT_contest(), v1.ContestAdd)
+		apiV1.DELETE("/contest/contest_delete", jwt.JWT_contest(), v1.ContestDelete)
+		apiV1.POST("/contest/contest_extras_edit", jwt.JWT_contest(), v1.ContestExtrasEdit)
 	}
 	return r
 }

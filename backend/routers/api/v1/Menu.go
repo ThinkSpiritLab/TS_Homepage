@@ -19,6 +19,22 @@ func ConsoleMenu(c *gin.Context)  {
 		meunUser["mname"] = "成员管理"
 		meunUser["children"] = []map[string]interface{} {menuUserItem1, menuUserItem2}
 		data = append(data, meunUser)
+
+		menuBulletinItem1 := map[string]interface{} {"mid": 131, "mname": "新增公告", "path": "addBulletin"}
+		menuBulletinItem2 := map[string]interface{} {"mid": 132, "mname": "公告列表", "path": "listBulletin"}
+		meunBulletin := make(map[string]interface{})
+		meunBulletin["mid"] = 130
+		meunBulletin["mname"] = "公告管理"
+		meunBulletin["children"] = []map[string]interface{} {menuBulletinItem1, menuBulletinItem2}
+		data = append(data, meunBulletin)
+
+		menuNewsItem1 := map[string]interface{} {"mid": 141, "mname": "新增新闻", "path": "addNews"}
+		menuNewsItem2 := map[string]interface{} {"mid": 142, "mname": "新闻列表", "path": "listNews"}
+		meunNews := make(map[string]interface{})
+		meunNews["mid"] = 140
+		meunNews["mname"] = "新闻管理"
+		meunNews["children"] = []map[string]interface{} {menuNewsItem1, menuNewsItem2}
+		data = append(data, meunNews)
 	}
 	if privilege == 1 || privilege == 2 || privilege == 4 {
 		menuContestItem1 := map[string]interface{} {"mid": 121, "mname": "添加记录", "path": "addContest"}

@@ -4,8 +4,10 @@ import (
 	"backend/models"
 	"backend/pkg/e"
 	"backend/routers/api/interfaceDataStruct"
+	"encoding/json"
 	"fmt"
 	"github.com/gin-gonic/gin"
+	"github.com/unknwon/com"
 	"net/http"
 )
 
@@ -47,6 +49,71 @@ func ContestAdd(c *gin.Context)  {
 			code = e.ERROR
 		}
 	}
+	c.JSON(http.StatusOK, gin.H{
+		"code" : code,
+		"msg" : e.GetMsg(code),
+		"data" : nil,
+	})
+}
+
+func ContestListBrief(c *gin.Context) {
+	var queryRecordRule interfaceDataStruct.RecordRule
+	fmt.Println(queryRecordRule)
+	err := json.Unmarshal([]byte(c.Query("conf")), &queryRecordRule)
+	fmt.Println(queryRecordRule)
+	code := e.ERROR
+	var contestListBrief []interfaceDataStruct.ContestListBrief
+	total := 1
+	if err == nil {
+		records, totalNum := models.GetContestBriefList(queryRecordRule)
+		total = totalNum
+		for _,val := range records {
+			awards := models.GetContestResultBriefByCid(val.Cid)
+			contestListBrief = append(contestListBrief, interfaceDataStruct.ContestListBrief{
+				Cid: val.Cid, NameZh: val.NameZh, NameEn: val.NameEn, LocationZH: val.LocationZH,
+				LocationEN: val.LocationEN, Ctime: val.Ctime, AwardType: val.AwardType,
+				Num0: awards[0], Num1: awards[1], Num2: awards[2], Num3: awards[3], Num4: awards[4],
+			})
+		}
+		code = e.SUCCESS
+	}
+	c.JSON(http.StatusOK, gin.H{
+		"code" : code,
+		"msg" : e.GetMsg(code),
+		"data" : gin.H{
+			"records": contestListBrief,
+			"total": total,
+		},
+	})
+}
+
+func ContestDelete(c *gin.Context)  {
+	cid := com.StrTo(c.Query("cid")).MustInt()
+	models.DeleteContest(cid)
+	code := e.SUCCESS
+	c.JSON(http.StatusOK, gin.H{
+		"code" : code,
+		"msg" : e.GetMsg(code),
+		"data" : nil,
+	})
+}
+
+func ContestExtras(c *gin.Context) {
+	cid := com.StrTo(c.Query("cid")).MustInt()
+	data := models.GetContestExtras(cid)
+	code := e.SUCCESS
+	c.JSON(http.StatusOK, gin.H{
+		"code" : code,
+		"msg" : e.GetMsg(code),
+		"data" : data,
+	})
+}
+
+func ContestExtrasEdit(c *gin.Context) {
+	cid := com.StrTo(c.Query("cid")).MustInt()
+	extras := com.StrTo(c.Query("extras")).String()
+	models.EditContestExtras(cid, extras)
+	code := e.SUCCESS
 	c.JSON(http.StatusOK, gin.H{
 		"code" : code,
 		"msg" : e.GetMsg(code),

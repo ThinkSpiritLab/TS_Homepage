@@ -9,15 +9,15 @@ type filterRule struct {
 	Privilege []int `json:"privilege"`
 	Grade []string `json:"grade"`
 }
-type recordRule struct {
+type RecordRule struct {
 	Size int `json:"size"`
 	Offset int `json:"offset"`
 	Keyword string `json:"keyword"`
 }
 type QueryRecordInfo struct {
-	SortRule sortRule `json:"sortRule"`
+	SortRule   sortRule   `json:"sortRule"`
 	FilterRule filterRule `json:"filterRule"`
-	RecordRule recordRule `json:"recordRule"`
+	RecordRule RecordRule `json:"recordRule"`
 }
 type Auth struct {
 	Stid string `valid:"Required; MaxSize(50)"`
@@ -57,4 +57,19 @@ type ContestAddForm struct {
 	BaseInfo   BaseInfo   `json:"baseInfo"`
 	ResultInfo ResultInfo `json:"resultInfo"`
 	Extras    string     `json:"extras"`
+}
+
+type ContestListBrief struct {
+	Cid        int    `json:"c_id"`
+	NameZh     string `json:"c_name_zh"`
+	NameEn     string `json:"c_name_en"`
+	LocationZH string `json:"c_location_zh"`
+	LocationEN string `json:"c_location_en"`
+	Ctime      string `json:"c_time"`
+	AwardType  string `json:"r_type"`
+	Num0       int    `json:"num_0"`
+	Num1       int    `json:"num_1"`
+	Num2       int    `json:"num_2"`
+	Num3       int    `json:"num_3"`
+	Num4       int    `json:"num_4"`
 }

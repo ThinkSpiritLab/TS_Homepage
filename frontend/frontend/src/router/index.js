@@ -10,6 +10,7 @@ import AddUser from "../components/Console/Users/AddUser";
 import ListUser from "../components/Console/Users/ListUser";
 import AddContest from "../components/Console/Contests/AddContest";
 import ListContest from "../components/Console/Contests/ListContest";
+import AddBulletin from "../components/Console/Bulletins/AddBulletin";
 
 Vue.use(VueRouter)
 
@@ -25,7 +26,8 @@ const routes = [
       { path: '/console_addUser', component: AddUser},
       { path: '/console_listUser', component: ListUser},
       { path: '/console_addContest', component: AddContest},
-      { path: '/console_listContest', component: ListContest}
+      { path: '/console_listContest', component: ListContest},
+      { path: '/console_addBulletin', component: AddBulletin}
     ] },
 ]
 

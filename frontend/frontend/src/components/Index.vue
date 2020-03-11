@@ -5,13 +5,13 @@
         <el-col :span="3">
           <div>
             <img src="../assets/TS_logo.png" alt="TS_logo" class="topIMG1">
-            <span style="margin-left: 5px">Think Spirit Lab</span>
+            <span style="margin-left: 5px" class="web-font">Think Spirit Lab</span>
           </div>
         </el-col>
         <el-col :span="4">
           <div style="margin-left: 20px">
             <img src="../assets/icpc.png" alt="TS_logo" class="topIMG2">
-            <span style="margin-left: 10px">NUIST CPC Team</span>
+            <span style="margin-left: 10px" class="web-font">NUIST CPC Team</span>
           </div>
         </el-col>
         <el-col :span="12">
@@ -22,8 +22,12 @@
               <el-menu-item index="/members">成员</el-menu-item>
               <el-menu-item index="/contests">竞赛历史</el-menu-item>
               <el-menu-item index="/news">活动与新闻</el-menu-item>
-              <el-menu-item index="/trains">训练与学习</el-menu-item>
-              <el-menu-item index="/publicity">内部信息</el-menu-item>
+              <el-menu-item index="/trains">TSOJ V5</el-menu-item>
+              <el-submenu index="platform">
+                <template slot="title">学习平台</template>
+                <el-menu-item index="/1">语言学习暨计算机等级考试学习系统</el-menu-item>
+                <el-menu-item index="/2">课程学习平台</el-menu-item>
+              </el-submenu>
             </el-menu>
           </div>
         </el-col>
@@ -153,5 +157,24 @@
   .btnConsole {
     margin-left: 10px;
   }
-
+  .textstyle {
+    font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+  }
+  @font-face {
+    font-family: 'webfont';
+    font-display: swap;
+    src: url('//at.alicdn.com/t/webfont_snovg14vkr.eot'); /* IE9*/
+    src: url('//at.alicdn.com/t/webfont_snovg14vkr.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('//at.alicdn.com/t/webfont_snovg14vkr.woff2') format('woff2'),
+    url('//at.alicdn.com/t/webfont_snovg14vkr.woff') format('woff'), /* chrome、firefox */
+    url('//at.alicdn.com/t/webfont_snovg14vkr.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+    url('//at.alicdn.com/t/webfont_snovg14vkr.svg#AlibabaPuHuiTiM') format('svg'); /* iOS 4.1- */
+  }
+  .web-font{
+    font-family:"webfont" !important;
+    font-size:16px;font-style:normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+  }
 </style>

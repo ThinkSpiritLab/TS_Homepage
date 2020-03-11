@@ -4,8 +4,6 @@ import router from './router'
 // import store from './store'
 import './plugins/element.js'
 import './assets/css/global.css'
-// import './assets/fonts/iconfont.css'
-// import './assets/font_awards/iconfont.css'
 import axios from 'axios'
 axios.interceptors.request.use(function (config) {
   config.headers.Authorization = window.sessionStorage.getItem('Authorization');

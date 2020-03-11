@@ -19,7 +19,7 @@
             <el-input v-model="addForm.baseInfo.c_location_en"></el-input>
           </el-form-item>
           <el-form-item label="比赛日期" prop="c_time">
-            <el-date-picker v-model="addForm.baseInfo.c_time" type="date" placeholder="选择日期">
+            <el-date-picker v-model="addForm.baseInfo.c_time" type="date" placeholder="选择日期" value-format="yyyy-MM-dd">
             </el-date-picker>
           </el-form-item>
         </el-form>
@@ -195,9 +195,9 @@
         award_options: {
           type1: [{value: '1', label: '金牌', icon: "#icon-jinpai"}, {value: '2', label: '银牌', icon: "#icon-yinpai"},
             {value: '3', label: '铜牌', icon: "#icon-tongpai"}, {value: '4', label: '铁牌', icon: "#icon-tiepai"}],
-          type2: [{value: '1', label: '特等奖', icon: "#icon-tedengjiang"}, {value: '2', label: '一等奖', icon: "#icon-jinpai"},
-            {value: '3', label: '二等奖', icon: "#icon-yinpai"}, {value: '4', label: '三等奖', icon: "#icon-tongpai"},
-            {value: '5', label: '铁', icon: "#icon-tiepai"}],
+          type2: [{value: '0', label: '特等奖', icon: "#icon-tedengjiang"}, {value: '1', label: '一等奖', icon: "#icon-jinpai"},
+            {value: '2', label: '二等奖', icon: "#icon-yinpai"}, {value: '3', label: '三等奖', icon: "#icon-tongpai"},
+            {value: '4', label: '铁', icon: "#icon-tiepai"}],
         },
         addFormRules: {
           c_name_zh: [{required: true, message: '请输本次竞赛中文名称', trigger: 'blur'}],
@@ -247,7 +247,6 @@
         }
       },
       submitContest: async function() {
-        console.log(this.addForm);
         this.loading = true;
         const { data:result } = await this.$http.post('/contest/contest_add', this.addForm);
         if (result.code !== 200) {
@@ -257,6 +256,13 @@
           this.formReset();
         }
         this.loading = false;
+      },
+      formReset: function () {
+        this.addForm.baseInfo.c_name_zh = this.addForm.baseInfo.c_name_en = this.addForm.baseInfo.c_location_zh = this.addForm.baseInfo.c_location_en = this.addForm.baseInfo.c_time = '';
+        this.addForm.resultInfo.total_team_num = 1;
+        this.addForm.resultInfo.results = [{t_name_zh: '', t_name_en: '', t_mem1_stid: '', t_mem2_stid: '', t_mem3_stid: '', t_star: '1', t_rank: 1, t_awards: '1'}];
+        this.addForm.extras = '';
+        this.activeStep = 0
       }
     }
   }
@@ -301,10 +307,10 @@
     background-color: #D0D0D0;
   }
   .icon {
-    width: 1em;
-    height: 1em;
-    vertical-align: -0.15em;
-    fill: currentColor;
-    overflow: hidden;
-  }
+     width: 1em;
+     height: 1em;
+     vertical-align: -0.15em;
+     fill: currentColor;
+     overflow: hidden;
+   }
 </style>

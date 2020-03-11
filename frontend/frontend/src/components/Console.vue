@@ -3,7 +3,7 @@
     <el-header>
       <div>
         <img src="../assets/TS_logo.png" alt="TS_logo" class="topIMG">
-        <span>Think Spirit 控制台</span>
+        <span class="web-font2">Think Spirit 控制台</span>
       </div>
       <div>
         <div class="userTip">{{UserTipInfo}}</div>
@@ -143,5 +143,22 @@
   .userTip {
     margin-right: 10px;
     font-size: 15px;
+  }
+  @font-face {
+    font-family: 'webfont2';
+    font-display: swap;
+    src: url('//at.alicdn.com/t/webfont_ji865vcnfc.eot'); /* IE9*/
+    src: url('//at.alicdn.com/t/webfont_ji865vcnfc.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('//at.alicdn.com/t/webfont_ji865vcnfc.woff2') format('woff2'),
+    url('//at.alicdn.com/t/webfont_ji865vcnfc.woff') format('woff'), /* chrome、firefox */
+    url('//at.alicdn.com/t/webfont_ji865vcnfc.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+    url('//at.alicdn.com/t/webfont_ji865vcnfc.svg#AlibabaPuHuiTiL') format('svg'); /* iOS 4.1- */
+  }
+  .web-font2{
+    font-family:"webfont2" !important;
+    font-size:16px;font-style:normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
   }
 </style>

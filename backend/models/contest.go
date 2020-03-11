@@ -1,6 +1,10 @@
 package models
 
-import "fmt"
+import (
+	"backend/routers/api/interfaceDataStruct"
+	"fmt"
+	"strconv"
+)
 
 type Contest struct {
 	Cid        int    `gorm:"primary_key" json:"cid"`
@@ -36,4 +40,31 @@ func AddContest(contest Contest) (bool, int) {
 func AddContestTeam(contestteam ContestTeam) bool {
 	db.Create(&contestteam)
 	return contestteam.Ctid>0
+}
+
+func GetContestBriefList(queryRecordRule interfaceDataStruct.RecordRule) (contests []Contest, total int) {
+	db.Offset(queryRecordRule.Offset).Limit(queryRecordRule.Size).Order("time asc").Find(&contests)
+	db.Model(&Contest{}).Count(&total)
+	return
+}
+
+func GetContestResultBriefByCid(cid int) (result [5]int) {
+	for i:=0; i<5; i++ {
+		db.Where("cid=? and awards=?", cid, strconv.Itoa(i)).Model(&ContestTeam{}).Count(&result[i])
+	}
+	return
+}
+
+func DeleteContest(cid int) {
+	db.Where("cid=?", cid).Delete(&ContestTeam{}).Delete(&Contest{})
+}
+
+func GetContestExtras(cid int) string{
+	var data []string
+	db.Where("cid=?", cid).Model(&Contest{}).Pluck("c_extras", &data)
+	return data[0]
+}
+
+func EditContestExtras(cid int, extras string) {
+	db.Model(Contest{}).Where("cid=?", cid).Update("c_extras", extras)
 }
