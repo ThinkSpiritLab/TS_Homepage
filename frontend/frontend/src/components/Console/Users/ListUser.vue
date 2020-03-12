@@ -11,7 +11,7 @@
             </el-input>
           </el-col>
           <el-col :span="2">
-            <el-button @click="clearFilter" size="small">清除筛选</el-button>
+            <el-button @click="clearFilter" size="small" type="warning" round>清除筛选</el-button>
           </el-col>
         </el-row>
         <el-table ref="filterTable" :data="recordsList" style="width: 100%;" size="small" :cell-style="{padding:'5px'}"

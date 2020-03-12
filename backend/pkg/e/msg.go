@@ -17,6 +17,10 @@ var MsgFlags = map[int]string {
 	ERROR_UPLOAD_IMAGE_TOO_LARGE: "图片大小超过 5 MB",
 	ERROR_UPLOAD_IMAGE_WRONG_TYPE: "仅允许 .jpg .jpeg .png 格式图片",
 	ERROR_UPLOAD_IMAGE_FAIL: "上传图片失败",
+
+	ERROR_BULLETIN_NOT_EXIST: "该公告不存在",
+
+	ERROR_NEWS_NOT_EXIST: "该公告不存在",
 }
 
 func GetMsg(code int) string {

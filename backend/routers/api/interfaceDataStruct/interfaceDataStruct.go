@@ -59,6 +59,11 @@ type ContestAddForm struct {
 	Extras    string     `json:"extras"`
 }
 
+type ContestEditForm struct {
+	Cid       int        `json:"cid"`
+	Extras    string     `json:"extras"`
+}
+
 type ContestListBrief struct {
 	Cid        int    `json:"c_id"`
 	NameZh     string `json:"c_name_zh"`
@@ -72,4 +77,42 @@ type ContestListBrief struct {
 	Num2       int    `json:"num_2"`
 	Num3       int    `json:"num_3"`
 	Num4       int    `json:"num_4"`
+}
+
+type BulletinAddForm struct {
+	BulletinTitle  string `json:"bulletinTitle"`
+	BulletinDetail string `json:"bulletinDetail"`
+}
+
+type BulletinListBrief struct {
+	Bid        int    `json:"b_id"`
+	Title      string `json:"title"`
+	Date       string `json:"date"`
+	Promulgator       string `json:"promulgator"`
+}
+
+type EditBulletinForm struct {
+	Bid            int    `json:"bid"`
+	BulletinTitle  string `json:"bulletinTitle"`
+	BulletinDetail string `json:"bulletinDetail"`
+}
+
+type NewsAddForm struct {
+	NewsTitle  string `json:"newsTitle"`
+	NewsDetail string `json:"newsDetail"`
+	NewsDate   string `json:"newsDate"`
+}
+
+type NewsListBrief struct {
+	Nid          int    `json:"n_id"`
+	Title        string `json:"title"`
+	Date         string `json:"date"`
+	Promulgator  string `json:"promulgator"`
+}
+
+type EditNewsForm struct {
+	Nid         int    `json:"nid"`
+	NewsTitle   string `json:"newsTitle"`
+	NewsDetail  string `json:"newsDetail"`
+	NewsDate    string `json:"newsDate"`
 }

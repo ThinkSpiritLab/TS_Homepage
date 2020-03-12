@@ -65,6 +65,6 @@ func GetContestExtras(cid int) string{
 	return data[0]
 }
 
-func EditContestExtras(cid int, extras string) {
-	db.Model(Contest{}).Where("cid=?", cid).Update("c_extras", extras)
+func EditContestExtras(editInfo interfaceDataStruct.ContestEditForm) {
+	db.Model(Contest{}).Where("cid=?", editInfo.Cid).Update("c_extras", editInfo.Extras)
 }

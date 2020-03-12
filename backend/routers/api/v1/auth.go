@@ -60,6 +60,15 @@ func GetPrivilege(token string) int {
 	}
 }
 
+func GetStid(token string) string {
+	privilege, err := util.ParseToken(token)
+	if err == nil {
+		return privilege.Stid
+	} else {
+		return ""
+	}
+}
+
 func CheckTSMember(token string) bool {
 	privilege := GetPrivilege(token)
 	if privilege == 1 || privilege == 2 || privilege == 3 || privilege == 4 || privilege == 5 {

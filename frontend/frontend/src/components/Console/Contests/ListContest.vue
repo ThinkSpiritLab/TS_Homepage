@@ -60,10 +60,10 @@
           <tinymce ref="editor" v-model="editForm.extras"/>
         </div>
       </div>
-      <button>
+      <div class="submitButton">
         <el-button @click="cancelEditExtras">取 消</el-button>
         <el-button type="primary" @click="comfirmEditExtras">确 定</el-button>
-      </button>
+      </div>
     </el-dialog>
   </div>
 </template>
@@ -134,16 +134,15 @@
       cancelEditExtras: function() {
         this.editForm.extras = "";
         this.editForm.cid = 0;
-        this.editVisible = true;
+        this.editVisible = false;
       },
       comfirmEditExtras: async function() {
-        const {data: res} = await this.$http.get('contest/contest_extras_edit',
-            {params: {cid: this.editForm.cid, extras: this.editForm.extras}});
+        const {data: res} = await this.$http.post('contest/contest_extras_edit', this.editForm);
         if (res.code !== 200)
           return this.$message.error(res.msg);
         else {
           this.$message.success("修改成功");
-          return this.editVisible = true;
+          return this.editVisible = false;
         }
       }
     },
@@ -168,10 +167,8 @@
     fill: currentColor;
     overflow: hidden;
   }
-  .hiddenspan {
-    visibility: hidden;
-  }
-  .tox-tinymce-aux{
-    z-index: 3000000;
+  .submitButton {
+    margin-top: 10px;
+    text-align: end;
   }
 </style>

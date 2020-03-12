@@ -68,8 +68,8 @@
         </el-col>
       </el-row>
       <div>
-        <el-button style="margin-top: 12px;" @click="addUser" :loading="loading">提交</el-button>
-        <el-button style="margin-top: 12px;" @click="formReset" :disabled="loading">重置</el-button>
+        <el-button style="margin-top: 12px;" @click="addUser" :loading="loading" type="primary">提交</el-button>
+        <el-button style="margin-top: 12px;" @click="formReset" :disabled="loading" type="danger">重置</el-button>
       </div>
     </el-card>
 </template>

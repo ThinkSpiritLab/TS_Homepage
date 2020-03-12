@@ -5,7 +5,6 @@ import (
 	"backend/pkg/e"
 	"backend/routers/api/interfaceDataStruct"
 	"encoding/json"
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/unknwon/com"
 	"net/http"
@@ -18,7 +17,6 @@ func ContestAdd(c *gin.Context)  {
 	if err != nil {
 		code = e.INVALID_PARAMS
 	} else {
-		fmt.Println(contestAddForm)
 		flag1, cid := models.AddContest(models.Contest{
 			NameZh:     contestAddForm.BaseInfo.NameZh,
 			NameEn:     contestAddForm.BaseInfo.NameEn,
@@ -58,12 +56,10 @@ func ContestAdd(c *gin.Context)  {
 
 func ContestListBrief(c *gin.Context) {
 	var queryRecordRule interfaceDataStruct.RecordRule
-	fmt.Println(queryRecordRule)
 	err := json.Unmarshal([]byte(c.Query("conf")), &queryRecordRule)
-	fmt.Println(queryRecordRule)
 	code := e.ERROR
 	var contestListBrief []interfaceDataStruct.ContestListBrief
-	total := 1
+	total := 0
 	if err == nil {
 		records, totalNum := models.GetContestBriefList(queryRecordRule)
 		total = totalNum
@@ -110,9 +106,9 @@ func ContestExtras(c *gin.Context) {
 }
 
 func ContestExtrasEdit(c *gin.Context) {
-	cid := com.StrTo(c.Query("cid")).MustInt()
-	extras := com.StrTo(c.Query("extras")).String()
-	models.EditContestExtras(cid, extras)
+	var editInfo interfaceDataStruct.ContestEditForm
+	c.BindJSON(&editInfo)
+	models.EditContestExtras(editInfo)
 	code := e.SUCCESS
 	c.JSON(http.StatusOK, gin.H{
 		"code" : code,

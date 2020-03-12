@@ -110,7 +110,13 @@ func ResetUserPswByUid(uid int) {
 	db.Model(&UserPassword{}).Where("uid=?", uid).Update("psw", user.Stid)
 }
 
-func GetNameByDimStid(diStid string) (users []User){
-	db.Select("name, stid").Where("stid LIKE ?", diStid+"%").Find(&users)
+func GetNameByDimStid(dimStid string) (users []User){
+	db.Select("name, stid").Where("stid LIKE ?", dimStid+"%").Find(&users)
 	return
+}
+
+func GetNameByStid(stid string) string {
+	var user User
+	db.Select("name").Where("stid=?", stid).First(&user)
+	return user.Name
 }

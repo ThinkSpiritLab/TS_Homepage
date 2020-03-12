@@ -11,6 +11,11 @@ import ListUser from "../components/Console/Users/ListUser";
 import AddContest from "../components/Console/Contests/AddContest";
 import ListContest from "../components/Console/Contests/ListContest";
 import AddBulletin from "../components/Console/Bulletins/AddBulletin";
+import ListBulletin from "../components/Console/Bulletins/ListBulletin";
+import EditBulletin from "../components/Console/Bulletins/EditBulletin";
+import AddNews from "../components/Console/News/AddNews";
+import EditNews from "../components/Console/News/EditNews";
+import ListNews from "../components/Console/News/ListNews";
 
 Vue.use(VueRouter)
 
@@ -27,7 +32,12 @@ const routes = [
       { path: '/console_listUser', component: ListUser},
       { path: '/console_addContest', component: AddContest},
       { path: '/console_listContest', component: ListContest},
-      { path: '/console_addBulletin', component: AddBulletin}
+      { path: '/console_addBulletin', component: AddBulletin},
+      { path: '/console_listBulletin', component: ListBulletin},
+      { path: '/console_editBulletin/:bid', component: EditBulletin},
+      { path: '/console_addNews', component: AddNews},
+      { path: '/console_listNews', component: ListNews},
+      { path: '/console_editNews/:nid', component: EditNews},
     ] },
 ]
 

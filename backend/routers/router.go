@@ -28,6 +28,10 @@ func InitRouter() *gin.Engine {
 		apiV1.GET("/user_name_by_dim_stid", v1.NameByDimStid)
 		apiV1.GET("/contest_list_brief", v1.ContestListBrief)
 		apiV1.GET("/contest_extras", v1.ContestExtras)
+		apiV1.GET("/bulletin_list_brief", v1.BulletinListBrief)
+		apiV1.GET("/bulletin_info", v1.BulletinInfo)
+		apiV1.GET("/news_list_brief", v1.NewsListBrief)
+		apiV1.GET("/news_info", v1.NewsInfo)
 
 		apiV1.GET("/console/menu_list", jwt.JWT_console(), v1.ConsoleMenu)
 
@@ -39,6 +43,14 @@ func InitRouter() *gin.Engine {
 		apiV1.POST("/contest/contest_add", jwt.JWT_contest(), v1.ContestAdd)
 		apiV1.DELETE("/contest/contest_delete", jwt.JWT_contest(), v1.ContestDelete)
 		apiV1.POST("/contest/contest_extras_edit", jwt.JWT_contest(), v1.ContestExtrasEdit)
+
+		apiV1.POST("/console/bulletin_add", jwt.JWT_teamManage(), v1.BulletinAdd)
+		apiV1.DELETE("/console/bulletin_delete", jwt.JWT_teamManage(), v1.BulletinDelete)
+		apiV1.POST("/console/bulletin_edit", jwt.JWT_teamManage(), v1.BulletinEdit)
+
+		apiV1.POST("/console/news_add", jwt.JWT_teamManage(), v1.NewsAdd)
+		apiV1.DELETE("/console/news_delete", jwt.JWT_teamManage(), v1.NewsDelete)
+		apiV1.POST("/console/news_edit", jwt.JWT_teamManage(), v1.NewsEdit)
 	}
 	return r
 }

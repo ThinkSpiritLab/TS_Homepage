@@ -70,7 +70,7 @@
         this.$router.push('/index');
       },
       getMenuList: async function () {
-        const {data: res} = await this.$http.get('/console/menu_list')
+        const {data: res} = await this.$http.get('/console/menu_list');
         if (res.code !== 200) {
           this.$message.error(res.msg);
           this.log_out();
