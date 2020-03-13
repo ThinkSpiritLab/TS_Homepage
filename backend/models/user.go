@@ -20,6 +20,9 @@ type UserDetail struct {
 	URL string `gorm:"column:URL" json:"URL"`
 	Mobile string `json:"mobile"`
 	Introduction string `gorm:"type:text" json:"introduction"` // []byte
+	Education string `gorm:"type:text" json:"education"` // []byte
+	Career string `gorm:"type:text" json:"career"` // []byte
+	AvatarUrl string `gorm:"column:avatar_url" json:"avatarUrl"`
 }
 
 func GetPrivilegeByUid(uid int) int {
@@ -104,6 +107,10 @@ func EditUser(user User) {
 	db.Model(&user).Omit("uid", "stid").Updates(&user)
 }
 
+func EditUserDetail(ud UserDetail)  {
+	db.Model(&ud).Omit("uid").Updates(&ud)
+}
+
 func ResetUserPswByUid(uid int) {
 	var user User
 	db.Select("stid, uid").Where("uid=?", uid).First(&user)
@@ -119,4 +126,10 @@ func GetNameByStid(stid string) string {
 	var user User
 	db.Select("name").Where("stid=?", stid).First(&user)
 	return user.Name
+}
+
+func GetStidByUid(uid int) string {
+	var user User
+	db.Select("stid").Where("uid=?", uid).First(&user)
+	return user.Stid
 }

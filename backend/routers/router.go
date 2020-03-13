@@ -26,6 +26,7 @@ func InitRouter() *gin.Engine {
 		apiV1.GET("/user_detail", v1.UserDetail)
 		apiV1.GET("/user_grade_list", v1.UserGradeList)
 		apiV1.GET("/user_name_by_dim_stid", v1.NameByDimStid)
+		apiV1.GET("/user_all_info", v1.UserAllInfo)
 		apiV1.GET("/contest_list_brief", v1.ContestListBrief)
 		apiV1.GET("/contest_extras", v1.ContestExtras)
 		apiV1.GET("/bulletin_list_brief", v1.BulletinListBrief)
@@ -39,6 +40,7 @@ func InitRouter() *gin.Engine {
 		apiV1.DELETE("/console/user_delete", jwt.JWT_teamManage(), v1.UserDelete)
 		apiV1.POST("/console/user_edit", jwt.JWT_teamManage(), v1.UserEdit)
 		apiV1.POST("/console/user_reset_psw", jwt.JWT_teamManage(), v1.UserResetPsw)
+		apiV1.POST("/console/user_all_edit", v1.UserAllEdit)
 
 		apiV1.POST("/contest/contest_add", jwt.JWT_contest(), v1.ContestAdd)
 		apiV1.DELETE("/contest/contest_delete", jwt.JWT_contest(), v1.ContestDelete)

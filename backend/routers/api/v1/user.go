@@ -50,6 +50,48 @@ func UserInfo(c *gin.Context)  {
 	})
 }
 
+func UserAllInfo(c *gin.Context)  {
+	uid := com.StrTo(c.Query("uid")).MustInt()
+	valid := validation.Validation{}
+	valid.Required(uid, "uid")
+	code := e.INVALID_PARAMS
+	var data map[string]interface{}
+	if !valid.HasErrors() {
+		userBrief, success := models.GetUserInfo(uid)
+		if !success {
+			code = e.ERROR_NOT_EXIST_USER
+		} else {
+			userDetail, _ := models.GetUserDetail(uid)
+			userContest := models.GetUserContestBy(userBrief.Stid)
+			res := interfaceDataStruct.UserAllInfo{
+				Uid:          userBrief.Uid,
+				Stid:         userBrief.Stid,
+				Name:         userBrief.Name,
+				Identity:     userBrief.Identity,
+				Privilege:    userBrief.Privilege,
+				Email:        userDetail.Email,
+				Phone:        userDetail.Mobile,
+				QQ:           userDetail.QQ,
+				URL:          userDetail.URL,
+				Introduction: userDetail.Introduction,
+				AvatarUrl:    userDetail.AvatarUrl,
+				Education:    userDetail.Education,
+				Career:       userDetail.Career,
+			}
+			data = gin.H {
+				"userAllInfo": res,
+				"userContest": userContest,
+			}
+			code = e.SUCCESS
+		}
+	}
+	c.JSON(http.StatusOK, gin.H{
+		"code" : code,
+		"msg" : e.GetMsg(code),
+		"data" : data,
+	})
+}
+
 func UserInfoList(c *gin.Context)  {
 	var listConf interfaceDataStruct.QueryRecordInfo
 	err := json.Unmarshal([]byte(c.Query("conf")), &listConf)
@@ -182,6 +224,36 @@ func UserEdit(c *gin.Context)  {
 		code = e.ERROR_AUTH_CHECK_TOKEN_FAIL
 	} else {
 		models.EditUser(user)
+		code = e.SUCCESS
+	}
+	c.JSON(http.StatusOK, gin.H{
+		"code" : code,
+		"msg" : e.GetMsg(code),
+		"data" : nil,
+	})
+}
+
+func UserAllEdit(c *gin.Context) {
+	var uf interfaceDataStruct.UserAllInfo
+	c.BindJSON(&uf)
+	code := e.SUCCESS
+	thisPrivilege := GetPrivilege(c.Request.Header.Get("Authorization"))
+	thisStid := GetStid(c.Request.Header.Get("Authorization"))
+	if (thisStid != uf.Stid) && (thisPrivilege != 1 && thisPrivilege != 2 && thisPrivilege != 3) {
+		code = e.ERROR_AUTH_CHECK_TOKEN_FAIL
+	} else {
+		userDetail := models.UserDetail{
+			Uid:          uf.Uid,
+			Email:        uf.Email,
+			QQ:           uf.QQ,
+			URL:          uf.URL,
+			Mobile:       uf.Phone,
+			Introduction: uf.Introduction,
+			Education:    uf.Education,
+			Career:       uf.Career,
+			AvatarUrl:    uf.AvatarUrl,
+		}
+		models.EditUserDetail(userDetail)
 		code = e.SUCCESS
 	}
 	c.JSON(http.StatusOK, gin.H{

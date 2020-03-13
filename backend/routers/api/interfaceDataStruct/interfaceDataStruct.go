@@ -116,3 +116,19 @@ type EditNewsForm struct {
 	NewsDetail  string `json:"newsDetail"`
 	NewsDate    string `json:"newsDate"`
 }
+
+type UserAllInfo struct {
+	Uid          int    `json:"uid"`
+	Stid         string `json:"stid"`
+	Name         string `json:"name"`
+	Identity     int    `json:"identity"`
+	Privilege    int    `json:"privilege"`
+	Email        string `json:"email"`
+	Phone        string `json:"phone"`
+	QQ           string `json:"QQ"`
+	URL          string `json:"URL"`
+	Introduction string `json:"introduction"`
+	AvatarUrl    string `json:"avatarUrl"`
+	Education    string `json:"education"`
+	Career string `json:"career"`
+}

@@ -2,31 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5d5ba5d7-4dde-4351-807f-66c25e22b460" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/models/bulletin.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/news.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/routers/api/v1/bulletin.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/routers/api/v1/news.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/frontend/src/components/Console/Bulletins/EditBulletin.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/frontend/src/components/Console/Bulletins/ListBulletin.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/frontend/src/components/Console/News/AddNews.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/frontend/src/components/Console/News/EditNews.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/frontend/src/components/Console/News/ListNews.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/images/0f9e7ef5b6ab6ce6d1094e47426fe1e7.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/frontend/src/components/Index/EditMyInfo.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/frontend/src/components/Index/Members.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/contest.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/contest.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/user.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/e/code.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/e/code.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/e/msg.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/e/msg.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/util/jwt.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/util/jwt.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routers/api/interfaceDataStruct/interfaceDataStruct.go" beforeDir="false" afterPath="$PROJECT_DIR$/routers/api/interfaceDataStruct/interfaceDataStruct.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routers/api/v1/auth.go" beforeDir="false" afterPath="$PROJECT_DIR$/routers/api/v1/auth.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routers/api/v1/contest.go" beforeDir="false" afterPath="$PROJECT_DIR$/routers/api/v1/contest.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routers/api/v1/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/routers/api/v1/user.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routers/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/routers/router.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/frontend/src/components/Console.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/frontend/src/components/Console.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/frontend/src/components/Console/Bulletins/AddBulletin.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/frontend/src/components/Console/Bulletins/AddBulletin.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/frontend/src/components/Console/Contests/ListContest.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/frontend/src/components/Console/Contests/ListContest.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/frontend/src/components/Console/Users/AddUser.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/frontend/src/components/Console/Users/AddUser.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/frontend/src/components/Console/Users/ListUser.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/frontend/src/components/Console/Users/ListUser.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/frontend/src/components/Index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/frontend/src/components/Index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/frontend/src/components/tinymce.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/frontend/src/components/tinymce.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/frontend/src/plugins/element.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/frontend/src/plugins/element.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/frontend/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/frontend/src/router/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/frontend/vue.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/frontend/vue.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,38 +116,38 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="477" y="47" key="#go_build_test.go/0.0.1536.824@0.0.1536.824" timestamp="1583568558867" />
-    <state width="1493" height="213" key="GridCell.Tab.0.bottom" timestamp="1584018219349">
+    <state width="1493" height="218" key="GridCell.Tab.0.bottom" timestamp="1584102693406">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="213" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1584018219349" />
-    <state width="1493" height="213" key="GridCell.Tab.0.center" timestamp="1584018219349">
+    <state width="1493" height="218" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1584102693406" />
+    <state width="1493" height="218" key="GridCell.Tab.0.center" timestamp="1584102693406">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="213" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1584018219349" />
-    <state width="1493" height="213" key="GridCell.Tab.0.left" timestamp="1584018219349">
+    <state width="1493" height="218" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1584102693406" />
+    <state width="1493" height="218" key="GridCell.Tab.0.left" timestamp="1584102693406">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="213" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1584018219349" />
-    <state width="1493" height="213" key="GridCell.Tab.0.right" timestamp="1584018219349">
+    <state width="1493" height="218" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1584102693406" />
+    <state width="1493" height="218" key="GridCell.Tab.0.right" timestamp="1584102693406">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="213" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1584018219349" />
-    <state width="1493" height="213" key="GridCell.Tab.1.bottom" timestamp="1584018219350">
+    <state width="1493" height="218" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1584102693406" />
+    <state width="1493" height="218" key="GridCell.Tab.1.bottom" timestamp="1584102693406">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="213" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1584018219350" />
-    <state width="1493" height="213" key="GridCell.Tab.1.center" timestamp="1584018219350">
+    <state width="1493" height="218" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1584102693406" />
+    <state width="1493" height="218" key="GridCell.Tab.1.center" timestamp="1584102693406">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="213" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1584018219350" />
-    <state width="1493" height="213" key="GridCell.Tab.1.left" timestamp="1584018219349">
+    <state width="1493" height="218" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1584102693406" />
+    <state width="1493" height="218" key="GridCell.Tab.1.left" timestamp="1584102693406">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="213" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1584018219349" />
-    <state width="1493" height="213" key="GridCell.Tab.1.right" timestamp="1584018219350">
+    <state width="1493" height="218" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1584102693406" />
+    <state width="1493" height="218" key="GridCell.Tab.1.right" timestamp="1584102693406">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="213" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1584018219350" />
+    <state width="1493" height="218" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1584102693406" />
     <state x="270" y="55" key="SettingsEditor" timestamp="1583226488092">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -175,21 +165,11 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/routers/api/v1/news.go</url>
-          <line>111</line>
-          <option name="timeStamp" value="13" />
+          <url>file://$PROJECT_DIR$/routers/api/v1/user.go</url>
+          <line>236</line>
+          <option name="timeStamp" value="14" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
-    <watches-manager>
-      <configuration name="GoApplicationRunConfiguration">
-        <watch expression="cfg" language="go" />
-        <watch expression="*(*&quot;github.com/go-ini/ini.Section&quot;)(824636813472)" />
-        <watch expression="*(*&quot;github.com/go-ini/ini.Section&quot;)(824636813472)" />
-        <watch expression="AppSetting" language="go" />
-        <watch expression="ServerSetting" language="go" />
-        <watch expression="*(*&quot;net/http.Request&quot;)(824634928128)" />
-      </configuration>
-    </watches-manager>
   </component>
 </project>

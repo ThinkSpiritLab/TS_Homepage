@@ -23,26 +23,26 @@
           <el-table-column prop="identity" label="身份" width="160" column-key="identity"
                            :filters="filterList.identity">
             <template slot-scope="scope">
-              <el-alert title="教师/教练" type="error" effect="dark" :closable="false"
+              <el-alert title="教师/教练" type="error" effect="dark" :closable="false" center
                         v-if="scope.row.identity===1"></el-alert>
-              <el-alert title="正式成员" type="success" effect="dark" :closable="false"
+              <el-alert title="正式成员" type="success" effect="dark" :closable="false" center
                         v-else-if="scope.row.identity===2"></el-alert>
-              <el-alert title="预备成员" type="info" effect="dark" :closable="false"
+              <el-alert title="预备成员" type="info" effect="dark" :closable="false" center
                         v-else-if="scope.row.identity===3"></el-alert>
             </template>
           </el-table-column>
           <el-table-column prop="privilege" label="权限" width="170" column-key="privilege"
                            :filters="filterList.privilege">
             <template slot-scope="scope">
-              <el-alert title="root" type="error" effect="dark" :closable="false"
+              <el-alert title="root" type="error" effect="dark" :closable="false" center
                         v-if="scope.row.privilege===1"></el-alert>
-              <el-alert title="超级管理员" type="success" effect="dark" :closable="false"
+              <el-alert title="超级管理员" type="success" effect="dark" :closable="false" center
                         v-else-if="scope.row.privilege===2"></el-alert>
-              <el-alert title="团队建设管理员" type="warning" effect="dark" :closable="false"
+              <el-alert title="团队建设管理员" type="warning" effect="dark" :closable="false" center
                         v-else-if="scope.row.privilege===3"></el-alert>
-              <el-alert title="竞赛训练管理员" type="warning" effect="dark" :closable="false"
+              <el-alert title="竞赛训练管理员" type="warning" effect="dark" :closable="false" center
                         v-else-if="scope.row.privilege===4"></el-alert>
-              <el-alert title="普通权限" type="info" effect="dark" :closable="false"
+              <el-alert title="普通权限" type="info" effect="dark" :closable="false" center
                         v-else-if="scope.row.privilege===5"></el-alert>
             </template>
           </el-table-column>
@@ -55,7 +55,7 @@
                 <el-button type="warning" icon="el-icon-setting" size="mini" @click="editUserInfo(scope.row)"></el-button>
               </el-tooltip>
               <el-tooltip effect="dark" content="编辑详细信息" placement="top" :enterable="false">
-                <el-button type="primary" icon="el-icon-edit" size="mini"></el-button>
+                <el-button type="primary" icon="el-icon-edit" size="mini" @click="editUserDetail(scope.row.uid)"></el-button>
               </el-tooltip>
               <el-tooltip effect="dark" content="重置密码" placement="top" :enterable="false">
                 <el-popconfirm confirmButtonText='确认重置' cancelButtonText='我手滑了' icon="el-icon-info" iconColor="red"
@@ -303,6 +303,10 @@
         else {
           this.$message.success('成功将密码重置为学号');
         }
+      },
+      editUserDetail: function (uid) {
+        const { href } = this.$router.resolve(`editPersonalInfo/`+uid);
+        window.open(href, "_blank");
       }
     },
     created() {

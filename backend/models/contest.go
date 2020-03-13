@@ -68,3 +68,8 @@ func GetContestExtras(cid int) string{
 func EditContestExtras(editInfo interfaceDataStruct.ContestEditForm) {
 	db.Model(Contest{}).Where("cid=?", editInfo.Cid).Update("c_extras", editInfo.Extras)
 }
+
+func GetUserContestBy(stid string) (ct []ContestTeam){
+	db.Where("mem1_stid=? or mem1_stid=? or mem1_stid=?", stid,stid,stid).Find(&ct)
+	return
+}

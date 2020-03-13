@@ -16,15 +16,19 @@ import EditBulletin from "../components/Console/Bulletins/EditBulletin";
 import AddNews from "../components/Console/News/AddNews";
 import EditNews from "../components/Console/News/EditNews";
 import ListNews from "../components/Console/News/ListNews";
+import EditMyInfo from "../components/Index/EditMyInfo";
+import Members from "../components/Index/Members";
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes = [
   { path: '/', redirect: '/index' },
   { path: '/index', component: Index, redirect: '/main', children:[
       { path: '/main', component: Main},
       { path: '/login', component: Login},
-      { path: '/indexDeny', component: accessDeny}
+      { path: '/indexDeny', component: accessDeny},
+      { path: '/editPersonalInfo/:uid', component: EditMyInfo},
+      { path: '/members', component: Members}
     ] },
   { path: '/console', component: Console, redirect: '/console_home', children:[
       { path: '/console_home', component: Home},
@@ -39,17 +43,18 @@ const routes = [
       { path: '/console_listNews', component: ListNews},
       { path: '/console_editNews/:nid', component: EditNews},
     ] },
-]
+];
 
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
-})
+});
 
 router.beforeEach((to, from, next) => {
-  if (to.path.indexOf('console') !== -1) {
-    let Myinfo = JSON.parse(window.sessionStorage.getItem('MyInfo'))
+  let index = 0;
+  if ((index=to.path.indexOf('console')) !== -1) {
+    let Myinfo = JSON.parse(window.sessionStorage.getItem('MyInfo'));
     if (!Myinfo) {
       return next('/login');
     } else if (Myinfo.privilege !== 1 && Myinfo.privilege !== 2 &&
@@ -58,8 +63,18 @@ router.beforeEach((to, from, next) => {
     } else {
       next();
     }
+  } else if ((index=to.path.indexOf('editPersonalInfo/')) !== -1) {
+    let Myinfo = JSON.parse(window.sessionStorage.getItem('MyInfo'));
+    if (!Myinfo) {
+      return next('/login');
+    } else if (Number(to.params.uid)!==Myinfo.uid && Myinfo.privilege !== 1 &&
+        Myinfo.privilege !== 2 && Myinfo.privilege !== 3){
+      return next('/indexDeny');
+    } else {
+      next();
+    }
   }
   next();
-})
+});
 
 export default router

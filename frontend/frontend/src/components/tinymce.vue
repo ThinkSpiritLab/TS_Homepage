@@ -62,7 +62,7 @@
             let formData = new FormData();
             // 服务端接收文件的参数名，文件数据，文件名
             formData.append('upfile', blobInfo.blob(), blobInfo.filename());
-            const {data: res} = await this.$http.post('upload_image', formData)
+            const {data: res} = await this.$http.post('upload_image', formData);
             if (res.code === 200) {
               // 这里返回的是你图片的地址
               success(res.data)
