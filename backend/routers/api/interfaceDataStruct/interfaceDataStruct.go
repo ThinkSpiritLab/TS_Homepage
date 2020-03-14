@@ -124,11 +124,33 @@ type UserAllInfo struct {
 	Identity     int    `json:"identity"`
 	Privilege    int    `json:"privilege"`
 	Email        string `json:"email"`
-	Phone        string `json:"phone"`
+	Address        string `json:"address"`
 	QQ           string `json:"QQ"`
 	URL          string `json:"URL"`
 	Introduction string `json:"introduction"`
 	AvatarUrl    string `json:"avatarUrl"`
 	Education    string `json:"education"`
 	Career string `json:"career"`
+}
+
+type UserContestHistory struct {
+	CNameZh   string `json:"c_name_zh"`
+	CNameEn   string `json:"c_name_en"`
+	Ctime     string `json:"c_time"`
+	AwardType string `json:"r_type"`
+	TNameZh   string `json:"t_name_zh"`
+	TNameEn   string `json:"t_name_en"`
+	Star      string `json:"t_star"`
+	Rank      int    `json:"t_rank"`
+	Awards    string `json:"t_awards"`
+}
+
+type MemberListBrief struct {
+	Uid       int `json:"uid"`
+	Name      string `json:"name"`
+	Stid      string `json:"stid"`
+	Grade     string `json:"grade"`
+	Email     string `json:"email"`
+	Identity  int    `json:"identity"`
+	AvatarUrl string `json:"avatarUrl"`
 }

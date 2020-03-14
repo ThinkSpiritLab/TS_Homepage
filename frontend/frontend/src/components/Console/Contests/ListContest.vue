@@ -10,7 +10,7 @@
         <el-table-column prop="achievements" label="成绩" width="350">
           <template slot-scope="scope">
             <div>
-              <span :class="scope.row['r_type']==='1'?'hiddenspan':''">
+              <span :class="{'hiddenspan': scope.row['r_type']==='1'}">
                 <svg class="icon" aria-hidden="true"><use xlink:href="#icon-tedengjiang"></use></svg>
                 <span style="margin-left: 5px">{{"X " + scope.row["num_0"]}}</span>
               </span>
@@ -170,5 +170,8 @@
   .submitButton {
     margin-top: 10px;
     text-align: end;
+  }
+  .hiddenspan {
+    visibility: hidden;
   }
 </style>

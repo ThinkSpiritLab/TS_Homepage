@@ -50,8 +50,8 @@
               <el-form-item label="邮箱" prop="email">
                 <el-input v-model="addForm.user_detail.email"></el-input>
               </el-form-item>
-              <el-form-item label="手机" prop="mobile">
-                <el-input v-model="addForm.user_detail.mobile"></el-input>
+              <el-form-item label="地址" prop="address">
+                <el-input v-model="addForm.user_detail.address"></el-input>
               </el-form-item>
               <el-form-item label="QQ" prop="QQ">
                 <el-input v-model="addForm.user_detail.QQ"></el-input>
@@ -86,13 +86,6 @@
         }
         cb(new Error('请输入合法的邮箱'))
       };
-      const checkMobile = (rule, value, cb) => {
-        const regMobile = /^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/;
-        if (regMobile.test(value) || !value) {
-          return cb()
-        }
-        cb(new Error('请输入合法的手机号'))
-      };
       const checkGrade = (rule, value, cb) => {
         if (value || this.addForm.user.identity==='1') {
           return cb()
@@ -115,7 +108,7 @@
             email: '',
             QQ: '',
             URL: '',
-            mobile: '',
+            address: '',
             introduction: ''
           }
         },
@@ -139,9 +132,6 @@
           email: [
             {validator: checkEmail, trigger: 'blur'}
           ],
-          mobile: [
-            {validator: checkMobile, trigger: 'blur'}
-          ]
         },
         loading: false,
       };

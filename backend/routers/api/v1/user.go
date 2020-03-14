@@ -62,7 +62,6 @@ func UserAllInfo(c *gin.Context)  {
 			code = e.ERROR_NOT_EXIST_USER
 		} else {
 			userDetail, _ := models.GetUserDetail(uid)
-			userContest := models.GetUserContestBy(userBrief.Stid)
 			res := interfaceDataStruct.UserAllInfo{
 				Uid:          userBrief.Uid,
 				Stid:         userBrief.Stid,
@@ -70,7 +69,7 @@ func UserAllInfo(c *gin.Context)  {
 				Identity:     userBrief.Identity,
 				Privilege:    userBrief.Privilege,
 				Email:        userDetail.Email,
-				Phone:        userDetail.Mobile,
+				Address:      userDetail.Address,
 				QQ:           userDetail.QQ,
 				URL:          userDetail.URL,
 				Introduction: userDetail.Introduction,
@@ -78,9 +77,25 @@ func UserAllInfo(c *gin.Context)  {
 				Education:    userDetail.Education,
 				Career:       userDetail.Career,
 			}
+			userContest := models.GetUserContestByStid(userBrief.Stid)
+			var userContestHistory []interfaceDataStruct.UserContestHistory
+			for _, val := range userContest {
+				contest := models.GetContestByCid(val.Cid)
+				userContestHistory = append(userContestHistory, interfaceDataStruct.UserContestHistory{
+					CNameZh:   contest.NameZh,
+					CNameEn:   contest.NameEn,
+					Ctime:     contest.Ctime,
+					AwardType: contest.AwardType,
+					TNameZh:   val.NameZh,
+					TNameEn:   val.NameEn,
+					Star:      val.Star,
+					Rank:      val.Rank,
+					Awards:    val.Awards,
+				})
+			}
 			data = gin.H {
 				"userAllInfo": res,
-				"userContest": userContest,
+				"userContest": userContestHistory,
 			}
 			code = e.SUCCESS
 		}
@@ -178,7 +193,7 @@ func UserAdd(c *gin.Context)  {
 						userDetail := addForm["user_detail"]
 						flag = models.AddUserDetail(models.UserDetail{
 							Uid: uid, Email: userDetail["email"], QQ: userDetail["QQ"], URL: userDetail["URL"],
-							Mobile: userDetail["mobile"], Introduction: userDetail["introduction"]})
+							Address: userDetail["address"], Introduction: userDetail["introduction"]})
 						if flag {
 							code = e.SUCCESS
 						}
@@ -247,7 +262,7 @@ func UserAllEdit(c *gin.Context) {
 			Email:        uf.Email,
 			QQ:           uf.QQ,
 			URL:          uf.URL,
-			Mobile:       uf.Phone,
+			Address:      uf.Address,
 			Introduction: uf.Introduction,
 			Education:    uf.Education,
 			Career:       uf.Career,
@@ -280,5 +295,71 @@ func UserResetPsw(c *gin.Context)  {
 		"code" : code,
 		"msg" : e.GetMsg(code),
 		"data" : nil,
+	})
+}
+
+func UserMemberFacultyBrief(c *gin.Context)  {
+	users := models.GetUserFaculty()
+	var data []interfaceDataStruct.MemberListBrief
+	for _, val := range users {
+		userDetail, _ := models.GetUserDetail(val.Uid)
+		data = append(data, interfaceDataStruct.MemberListBrief{
+			Uid:       val.Uid,
+			Name:      val.Name,
+			Stid:      val.Stid,
+			Grade:     val.Grade,
+			Email:     userDetail.Email,
+			Identity:  val.Identity,
+			AvatarUrl: userDetail.AvatarUrl,
+		})
+	}
+	c.JSON(http.StatusOK, gin.H{
+		"code" : e.SUCCESS,
+		"msg" : e.GetMsg(e.SUCCESS),
+		"data" : data,
+	})
+}
+
+func UserMemberStudentsBrief(c *gin.Context)  {
+	users := models.GetUserStudents()
+	var data []interfaceDataStruct.MemberListBrief
+	for _, val := range users {
+		userDetail, _ := models.GetUserDetail(val.Uid)
+		data = append(data, interfaceDataStruct.MemberListBrief{
+			Uid:       val.Uid,
+			Name:      val.Name,
+			Stid:      val.Stid,
+			Grade:     val.Grade,
+			Email:     userDetail.Email,
+			Identity:  val.Identity,
+			AvatarUrl: userDetail.AvatarUrl,
+		})
+	}
+	c.JSON(http.StatusOK, gin.H{
+		"code" : e.SUCCESS,
+		"msg" : e.GetMsg(e.SUCCESS),
+		"data" : data,
+	})
+}
+
+func UserMemberAlumniBrief(c *gin.Context)  {
+	users := models.GetUserAlumni()
+	var data []interfaceDataStruct.MemberListBrief
+	for _, val := range users {
+		userDetail, _ := models.GetUserDetail(val.Uid)
+		data = append(data, interfaceDataStruct.MemberListBrief{
+			Uid:       val.Uid,
+			Name:      val.Name,
+			Stid:      val.Stid,
+			Grade:     val.Grade,
+			Email:     userDetail.Email,
+			Identity:  val.Identity,
+			AvatarUrl: userDetail.AvatarUrl,
+		})
+	}
+	c.JSON(http.StatusOK, gin.H{
+		"code" : e.SUCCESS,
+		"msg" : e.GetMsg(e.SUCCESS),
+		"data" : data,
 	})
 }

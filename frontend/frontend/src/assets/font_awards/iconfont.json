@@ -20,6 +20,13 @@
       "unicode_decimal": 59719
     },
     {
+      "icon_id": "3594073",
+      "name": "星号",
+      "font_class": "asterisk",
+      "unicode": "e502",
+      "unicode_decimal": 58626
+    },
+    {
       "icon_id": "4769333",
       "name": "金牌",
       "font_class": "jinpai",

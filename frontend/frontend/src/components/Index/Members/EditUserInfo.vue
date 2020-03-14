@@ -54,8 +54,8 @@
             <el-form-item label="Email" style="width: 400px">
               <el-input v-model="infoForm.email"></el-input>
             </el-form-item>
-            <el-form-item label="TEL" style="width: 400px">
-              <el-input v-model="infoForm.phone"></el-input>
+            <el-form-item label="地址" style="width: 400px">
+              <el-input v-model="infoForm.address"></el-input>
             </el-form-item>
             <el-form-item label="QQ" style="width: 400px">
               <el-input v-model="infoForm.QQ"></el-input>
@@ -67,7 +67,7 @@
         </el-row>
         <el-divider content-position="left">硕士及以上教育经历</el-divider>
         <div>
-          <el-row v-for="(val, index) in education">
+          <el-row v-for="(val, index) in education" :key='index'>
             <el-col :span="4">
               <el-form-item label="开始" label-width="50px">
                 <el-date-picker v-model="val.begin" type="year" placeholder="开始年份"
@@ -114,7 +114,7 @@
         </div>
         <el-divider content-position="left">职业经历</el-divider>
         <div>
-          <el-row v-for="(val, index) in career">
+          <el-row v-for="(val, index) in career" :key='index'>
             <el-col :span="4">
               <el-form-item label="开始" label-width="50px">
                 <el-date-picker v-model="val.begin" type="year" placeholder="开始年份"
@@ -163,9 +163,9 @@
 </template>
 
 <script>
-  import tinymce from "../tinymce";
+  import tinymce from "../../tinymce";
   export default {
-    name: "EditMyInfo",
+    name: "EditUserInfo",
     components: {
       tinymce
     },
@@ -176,12 +176,12 @@
         career: [],
         infoForm: {
           uid: 0,
-          stid: '20168304019',
-          name: '张斌杰',
-          identity: '2',
-          privilege: '1',
+          stid: '',
+          name: '',
+          identity: '0',
+          privilege: '0',
           email: '',
-          phone: '',
+          address: '',
           QQ: '',
           URL: '',
           introduction: '',
@@ -272,7 +272,6 @@
         this.infoForm.privilege  = Number(this.infoForm.privilege);
         this.infoForm.education = JSON.stringify(this.education);
         this.infoForm.career = JSON.stringify(this.career);
-        console.log(this.infoForm)
         const { data:result } = await this.$http.post('/console/user_all_edit', this.infoForm);
         if (result.code !== 200) {
           this.$message.error(result.msg);

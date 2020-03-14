@@ -49,7 +49,7 @@
           <el-table-column prop="operation" label="操作" width="300">
             <template slot-scope="scope">
               <el-tooltip effect="dark" content="查看个人主页" placement="top" :enterable="false">
-                <el-button type="info" icon="el-icon-user" size="mini"></el-button>
+                <el-button type="info" icon="el-icon-user" size="mini" @click="viewUserDetail(scope.row.uid)"></el-button>
               </el-tooltip>
               <el-tooltip effect="dark" content="编辑基本信息" placement="top" :enterable="false">
                 <el-button type="warning" icon="el-icon-setting" size="mini" @click="editUserInfo(scope.row)"></el-button>
@@ -306,6 +306,10 @@
       },
       editUserDetail: function (uid) {
         const { href } = this.$router.resolve(`editPersonalInfo/`+uid);
+        window.open(href, "_blank");
+      },
+      viewUserDetail: function (uid) {
+        const { href } = this.$router.resolve(`member/`+uid);
         window.open(href, "_blank");
       }
     },

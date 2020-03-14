@@ -2,6 +2,7 @@ package models
 
 import (
 	"backend/routers/api/interfaceDataStruct"
+	"time"
 )
 
 type User struct {
@@ -14,15 +15,15 @@ type User struct {
 }
 
 type UserDetail struct {
-	Uid int `gorm:"primary_key" json:"uid"`
-	Email string `json:"email"`
-	QQ string `gorm:"column:QQ" json:"QQ"`
-	URL string `gorm:"column:URL" json:"URL"`
-	Mobile string `json:"mobile"`
+	Uid          int    `gorm:"primary_key" json:"uid"`
+	Email        string `json:"email"`
+	QQ           string `gorm:"column:QQ" json:"QQ"`
+	URL          string `gorm:"column:URL" json:"URL"`
+	Address      string `gorm:"column:address" json:"address"`
 	Introduction string `gorm:"type:text" json:"introduction"` // []byte
-	Education string `gorm:"type:text" json:"education"` // []byte
-	Career string `gorm:"type:text" json:"career"` // []byte
-	AvatarUrl string `gorm:"column:avatar_url" json:"avatarUrl"`
+	Education    string `gorm:"type:text" json:"education"` // []byte
+	Career       string `gorm:"type:text" json:"career"` // []byte
+	AvatarUrl    string `gorm:"column:avatar_url" json:"avatarUrl"`
 }
 
 func GetPrivilegeByUid(uid int) int {
@@ -132,4 +133,29 @@ func GetStidByUid(uid int) string {
 	var user User
 	db.Select("stid").Where("uid=?", uid).First(&user)
 	return user.Stid
+}
+
+func GetUserFaculty() (users []User) {
+	db.Where("identity='1'").Find(&users)
+	return
+}
+func GetUserStudents() (users []User) {
+	year := time.Now().Year()
+	month := time.Now().Month()
+	if month < 9 {
+		db.Where("identity!='1' and grade>=?", year-4).Order("grade asc").Find(&users)
+	} else {
+		db.Where("identity!='1' and grade>?", year-4).Order("grade asc").Find(&users)
+	}
+	return
+}
+func GetUserAlumni() (users []User) {
+	year := time.Now().Year()
+	month := time.Now().Month()
+	if month < 9 {
+		db.Where("identity!='1' and grade<?", year-4).Order("grade desc").Find(&users)
+	} else {
+		db.Where("identity!='1' and grade<=?", year-4).Order("grade desc").Find(&users)
+	}
+	return
 }

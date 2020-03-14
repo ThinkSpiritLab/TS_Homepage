@@ -16,8 +16,9 @@ import EditBulletin from "../components/Console/Bulletins/EditBulletin";
 import AddNews from "../components/Console/News/AddNews";
 import EditNews from "../components/Console/News/EditNews";
 import ListNews from "../components/Console/News/ListNews";
-import EditMyInfo from "../components/Index/EditMyInfo";
-import Members from "../components/Index/Members";
+import EditUserInfo from "../components/Index/Members/EditUserInfo";
+import Members from "../components/Index/Members/Members";
+import MemberView from "../components/Index/Members/MemberView";
 
 Vue.use(VueRouter);
 
@@ -27,8 +28,9 @@ const routes = [
       { path: '/main', component: Main},
       { path: '/login', component: Login},
       { path: '/indexDeny', component: accessDeny},
-      { path: '/editPersonalInfo/:uid', component: EditMyInfo},
-      { path: '/members', component: Members}
+      { path: '/editPersonalInfo/:uid', component: EditUserInfo},
+      { path: '/members', component: Members},
+      { path: '/member/:uid', component: MemberView}
     ] },
   { path: '/console', component: Console, redirect: '/console_home', children:[
       { path: '/console_home', component: Home},

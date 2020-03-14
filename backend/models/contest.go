@@ -48,6 +48,11 @@ func GetContestBriefList(queryRecordRule interfaceDataStruct.RecordRule) (contes
 	return
 }
 
+func GetContestByCid(cid int) (contest Contest) {
+	db.Where("cid=?", cid).First(&contest)
+	return
+}
+
 func GetContestResultBriefByCid(cid int) (result [5]int) {
 	for i:=0; i<5; i++ {
 		db.Where("cid=? and awards=?", cid, strconv.Itoa(i)).Model(&ContestTeam{}).Count(&result[i])
@@ -69,7 +74,7 @@ func EditContestExtras(editInfo interfaceDataStruct.ContestEditForm) {
 	db.Model(Contest{}).Where("cid=?", editInfo.Cid).Update("c_extras", editInfo.Extras)
 }
 
-func GetUserContestBy(stid string) (ct []ContestTeam){
-	db.Where("mem1_stid=? or mem1_stid=? or mem1_stid=?", stid,stid,stid).Find(&ct)
+func GetUserContestByStid(stid string) (ct []ContestTeam){
+	db.Where("mem1_stid=? or mem2_stid=? or mem3_stid=?", stid,stid,stid).Find(&ct)
 	return
 }

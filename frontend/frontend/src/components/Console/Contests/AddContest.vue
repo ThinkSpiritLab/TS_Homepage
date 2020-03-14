@@ -186,7 +186,7 @@
               t_mem3_stid: '',
               t_star: '1',
               t_rank: 1,
-              t_awards: '1'
+              t_awards: '4'
             }]
           },
           extras: ''
@@ -221,7 +221,7 @@
           t_mem3_stid: '',
           t_star: 0,
           t_rank: 1,
-          t_awards: '1'
+          t_awards: '4'
         })
       },
       removeTeam: function (item) {
