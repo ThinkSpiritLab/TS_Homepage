@@ -19,6 +19,10 @@ import ListNews from "../components/Console/News/ListNews";
 import EditUserInfo from "../components/Index/Members/EditUserInfo";
 import Members from "../components/Index/Members/Members";
 import MemberView from "../components/Index/Members/MemberView";
+import ContestView from "../components/Index/Contests/ContestView";
+import Contests from "../components/Index/Contests/Contests";
+import Announcement from "../components/Index/Announcement/Announcement";
+import News from "../components/Index/News/News";
 
 Vue.use(VueRouter);
 
@@ -30,7 +34,11 @@ const routes = [
       { path: '/indexDeny', component: accessDeny},
       { path: '/editPersonalInfo/:uid', component: EditUserInfo},
       { path: '/members', component: Members},
-      { path: '/member/:uid', component: MemberView}
+      { path: '/member/:uid', component: MemberView},
+      { path: '/contests', component: Contests},
+      { path: '/contest/:cid', component: ContestView},
+      { path: '/announcement', component: Announcement},
+      { path: '/news', component: News},
     ] },
   { path: '/console', component: Console, redirect: '/console_home', children:[
       { path: '/console_home', component: Home},

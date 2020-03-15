@@ -85,10 +85,10 @@ type BulletinAddForm struct {
 }
 
 type BulletinListBrief struct {
-	Bid        int    `json:"b_id"`
-	Title      string `json:"title"`
-	Date       string `json:"date"`
-	Promulgator       string `json:"promulgator"`
+	Bid          int    `json:"b_id"`
+	Title        string `json:"title"`
+	Date         string `json:"date"`
+	Promulgator  string `json:"promulgator"`
 }
 
 type EditBulletinForm struct {
@@ -134,6 +134,7 @@ type UserAllInfo struct {
 }
 
 type UserContestHistory struct {
+	Cid       int    `json:"c_id"`
 	CNameZh   string `json:"c_name_zh"`
 	CNameEn   string `json:"c_name_en"`
 	Ctime     string `json:"c_time"`
@@ -153,4 +154,21 @@ type MemberListBrief struct {
 	Email     string `json:"email"`
 	Identity  int    `json:"identity"`
 	AvatarUrl string `json:"avatarUrl"`
+}
+
+type ContestTeamDetail struct {
+	NameZh   string `json:"t_name_zh"`
+	NameEn   string `json:"t_name_en"`
+	Mem1Stid string `json:"t_mem1_stid"`
+	Mem2Stid string `json:"t_mem2_stid"`
+	Mem3Stid string `json:"t_mem3_stid"`
+	Mem1Name string `json:"t_mem1_name"`
+	Mem2Name string `json:"t_mem2_name"`
+	Mem3Name string `json:"t_mem3_name"`
+	Mem1Uid  int    `json:"t_mem1_uid"`
+	Mem2Uid  int    `json:"t_mem2_uid"`
+	Mem3Uid  int    `json:"t_mem3_uid"`
+	Star     string `json:"t_star"`
+	Rank     int    `json:"t_rank"`
+	Awards   string `json:"t_awards"`
 }

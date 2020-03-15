@@ -9,14 +9,11 @@
                 <el-row :gutter="40">
                   <el-col :span="12">
                     <img :src="val.avatarUrl" class="memberAvatar" v-if="val.avatarUrl !== ''">
-                    <img :src="defaultAvatarUrl" class="memberAvatar" v-else>
+                    <img src="../../../assets/defaultAvatar.png" class="memberAvatar" v-else>
                   </el-col>
                   <el-col :span="12">
-                    <div style="padding: 14px;position: absolute;top: 25%; text-align: center">
+                    <div style="padding: 14px;position: absolute;top: 35%; text-align: center">
                       <div style="margin-bottom: 20px">{{val.name}}</div>
-                      <div class="banner" style="margin-bottom: 20px">
-                        <el-alert title="教师/教练" type="error" effect="dark" :closable="false" center></el-alert>
-                      </div>
                     </div>
                   </el-col>
                 </el-row>
@@ -31,17 +28,11 @@
                 <el-row :gutter="40">
                   <el-col :span="12">
                     <img :src="val.avatarUrl" class="memberAvatar" v-if="val.avatarUrl !== ''">
-                    <img :src="defaultAvatarUrl" class="memberAvatar" v-else>
+                    <img src="../../../assets/defaultAvatar.png" class="memberAvatar" v-else>
                   </el-col>
                   <el-col :span="12">
-                    <div style="padding: 14px;position: absolute;top: 15%; text-align: center">
+                    <div style="padding: 14px;position: absolute;top: 30%; text-align: center; margin-left: 20px">
                       <div style="margin-bottom: 20px">{{val.name}}</div>
-                      <div class="banner" style="margin-bottom: 20px">
-                        <el-alert title="正式成员" type="success" effect="dark" :closable="false" center
-                                  v-if="val.identity===2"></el-alert>
-                        <el-alert title="预备成员" type="info" effect="dark" :closable="false" center
-                                  v-if="val.identity===3"></el-alert>
-                      </div>
                       <div style="white-space:normal; word-break:break-all;overflow:hidden;">{{val.grade + " 级"}}</div>
                     </div>
                   </el-col>
@@ -57,17 +48,11 @@
                 <el-row :gutter="40">
                   <el-col :span="12">
                     <img :src="val.avatarUrl" class="memberAvatar" v-if="val.avatarUrl !== ''">
-                    <img :src="defaultAvatarUrl" class="memberAvatar" v-else>
+                    <img src="../../../assets/defaultAvatar.png" class="memberAvatar" v-else>
                   </el-col>
                   <el-col :span="12">
-                    <div style="padding: 14px;position: absolute;top: 15%; text-align: center">
+                    <div style="padding: 14px;position: absolute;top: 30%; text-align: center;  margin-left: 20px">
                       <div style="margin-bottom: 20px">{{val.name}}</div>
-                      <div class="banner" style="margin-bottom: 20px">
-                        <el-alert title="正式成员" type="success" effect="dark" :closable="false" center
-                                  v-if="val.identity===2"></el-alert>
-                        <el-alert title="预备成员" type="info" effect="dark" :closable="false" center
-                                  v-if="val.identity===3"></el-alert>
-                      </div>
                       <div style="white-space:normal; word-break:break-all;overflow:hidden;">{{val.grade + " 级"}}</div>
                     </div>
                   </el-col>
@@ -97,7 +82,6 @@
           identity: '',
           avatarUrl: ''
         }],
-        defaultAvatarUrl: 'http://127.0.0.1:8500/public/images/b03b63b794293cb2f314b8ef99c70615.png'
       }
     },
     methods: {

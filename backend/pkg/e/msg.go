@@ -21,6 +21,8 @@ var MsgFlags = map[int]string {
 	ERROR_BULLETIN_NOT_EXIST: "该公告不存在",
 
 	ERROR_NEWS_NOT_EXIST: "该公告不存在",
+
+	ERROR_CONTEST_NOT_EXIST: "该比赛不存在",
 }
 
 func GetMsg(code int) string {

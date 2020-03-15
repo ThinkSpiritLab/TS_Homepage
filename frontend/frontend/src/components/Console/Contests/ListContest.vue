@@ -36,7 +36,7 @@
         <el-table-column prop="options" label="操作">
           <template slot-scope="scope">
             <el-tooltip effect="dark" content="查看详细信息" placement="top" :enterable="false">
-              <el-button type="info" icon="el-icon-files" size="mini"></el-button>
+              <el-button type="info" icon="el-icon-files" size="mini" @click="goToContestDetail(scope.row.c_id)"></el-button>
             </el-tooltip>
             <el-tooltip effect="dark" content="编辑额外信息" placement="top" :enterable="false">
               <el-button type="primary" icon="el-icon-edit" size="mini" @click='editContestExtras(scope.row.c_id)'></el-button>
@@ -144,6 +144,10 @@
           this.$message.success("修改成功");
           return this.editVisible = false;
         }
+      },
+      goToContestDetail: function (cid) {
+        const { href } = this.$router.resolve(`/contest/`+cid);
+        window.open(href, "_blank");
       }
     },
     created() {

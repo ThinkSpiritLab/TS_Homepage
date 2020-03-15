@@ -82,6 +82,7 @@ func UserAllInfo(c *gin.Context)  {
 			for _, val := range userContest {
 				contest := models.GetContestByCid(val.Cid)
 				userContestHistory = append(userContestHistory, interfaceDataStruct.UserContestHistory{
+					Cid:      val.Cid,
 					CNameZh:   contest.NameZh,
 					CNameEn:   contest.NameEn,
 					Ctime:     contest.Ctime,

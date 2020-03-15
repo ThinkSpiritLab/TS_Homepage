@@ -12,58 +12,46 @@
                 加载中<span class="dot">...</span>
               </div>
             </el-image>
-            <el-image :src="defaultAvatarUrl" class="userAvatar" v-else>
-              <div slot="placeholder" class="image-slot">
-                加载中<span class="dot">...</span>
-              </div>
-            </el-image>
+            <img src="../../../assets/defaultAvatar.png" class="userAvatar" v-else>
           </div>
         </el-col>
-        <el-col :span="6" style="text-align: left">
-          <el-form-item label="学号/工号">
-            <div>{{infoForm.stid}}</div>
-          </el-form-item>
-          <el-form-item label="姓名">
-            <div>{{infoForm.name}}</div>
-          </el-form-item>
-          <el-form-item label="身份">
-            <div class="banner">
-              <el-alert title="教师/教练" type="error" effect="dark" :closable="false" center
-                        v-if="infoForm.identity==='1'"></el-alert>
-              <el-alert title="正式成员" type="success" effect="dark" :closable="false" center
-                        v-else-if="infoForm.identity==='2'"></el-alert>
-              <el-alert title="预备成员" type="info" effect="dark" :closable="false" center
-                        v-else-if="infoForm.identity==='3'"></el-alert>
-            </div>
-          </el-form-item>
-          <el-form-item label="权限">
-            <div class="banner">
-              <el-alert title="root" type="error" effect="dark" :closable="false" center
-                        v-if="infoForm.privilege==='1'"></el-alert>
-              <el-alert title="超级管理员" type="success" effect="dark" :closable="false" center
-                        v-else-if="infoForm.privilege==='2'"></el-alert>
-              <el-alert title="团队建设管理员" type="warning" effect="dark" :closable="false" center
-                        v-else-if="infoForm.privilege==='3'"></el-alert>
-              <el-alert title="竞赛训练管理员" type="warning" effect="dark" :closable="false" center
-                        v-else-if="infoForm.privilege==='4'"></el-alert>
-              <el-alert title="普通权限" type="info" effect="dark" :closable="false" center
-                        v-else-if="infoForm.privilege==='5'"></el-alert>
-            </div>
-          </el-form-item>
-        </el-col>
-        <el-col :span="10" style="text-align: left">
-          <el-form-item label="Email">
-            {{infoForm.email}}
-          </el-form-item>
-          <el-form-item label="地址">
-            {{infoForm.address}}
-          </el-form-item>
-          <el-form-item label="QQ">
-            {{infoForm.QQ}}
-          </el-form-item>
-          <el-form-item label="URL">
-            {{infoForm.URL}}
-          </el-form-item>
+        <el-col :span="16">
+          <el-row>
+            <el-col :span="12" style="text-align: left">
+              <el-form-item label="学号/工号">
+                <div>{{infoForm.stid}}</div>
+              </el-form-item>
+              <el-form-item label="姓名">
+                <div>{{infoForm.name}}</div>
+              </el-form-item>
+              <el-form-item label="身份">
+                <div class="banner">
+                  <el-alert title="教师/教练" type="error" effect="dark" :closable="false" center
+                            v-if="infoForm.identity==='1'"></el-alert>
+                  <el-alert title="正式成员" type="success" effect="dark" :closable="false" center
+                            v-else-if="infoForm.identity==='2'"></el-alert>
+                  <el-alert title="预备成员" type="info" effect="dark" :closable="false" center
+                            v-else-if="infoForm.identity==='3'"></el-alert>
+                </div>
+              </el-form-item>
+            </el-col>
+            <el-col :span="12" style="text-align: left">
+              <el-form-item label="Email">
+                {{infoForm.email}}
+              </el-form-item>
+              <el-form-item label="QQ">
+                {{infoForm.QQ}}
+              </el-form-item>
+              <el-form-item label="URL">
+                {{infoForm.URL}}
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row style="text-align: left">
+            <el-form-item label="地址">
+              {{infoForm.address}}
+            </el-form-item>
+          </el-row>
         </el-col>
       </el-row>
       <el-divider content-position="left">硕士及以上教育经历</el-divider>
@@ -126,7 +114,7 @@
         <div v-for="(val, index) in contestForm" :key='index'>
         <el-row :class="{'experienceTip': true, 'NotFirstLine': index!==0}">
           <el-col :span="9" :offset="0">
-            <el-form-item label="比赛名" label-width="60px">
+            <el-form-item label="竞赛名" label-width="60px">
               {{val.c_name_zh}}
             </el-form-item>
           </el-col>
@@ -136,13 +124,13 @@
             </el-form-item>
           </el-col>
           <el-col :span="3" :offset="0">
-            <el-form-item label="比赛时间" label-width="70px">
+            <el-form-item label="竞赛时间" label-width="70px">
               {{val.c_time}}
             </el-form-item>
           </el-col>
           <el-col :span="2" :offset="0">
             <el-form-item label="详情" label-width="40px">
-              <el-button type="info" icon="el-icon-files" size="mini"></el-button>
+              <el-button type="info" icon="el-icon-files" size="mini" @click="goToContestDetail(val.c_id)"></el-button>
             </el-form-item>
           </el-col>
         </el-row>
@@ -246,7 +234,6 @@
           career: []
         },
         contestForm: [],
-        defaultAvatarUrl: 'http://127.0.0.1:8500/public/images/b03b63b794293cb2f314b8ef99c70615.png'
       }
     },
     methods: {
@@ -270,6 +257,10 @@
           }
           this.contestForm = res.data.userContest;
         }
+      },
+      goToContestDetail: function (cid) {
+        const { href } = this.$router.resolve(`/contest/`+cid);
+        window.open(href, "_blank");
       }
     },
     created() {

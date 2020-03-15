@@ -129,10 +129,10 @@ func GetNameByStid(stid string) string {
 	return user.Name
 }
 
-func GetStidByUid(uid int) string {
+func GetUidByStid(stid string) int {
 	var user User
-	db.Select("stid").Where("uid=?", uid).First(&user)
-	return user.Stid
+	db.Select("uid").Where("stid=?", stid).First(&user)
+	return user.Uid
 }
 
 func GetUserFaculty() (users []User) {
@@ -143,9 +143,9 @@ func GetUserStudents() (users []User) {
 	year := time.Now().Year()
 	month := time.Now().Month()
 	if month < 9 {
-		db.Where("identity!='1' and grade>=?", year-4).Order("grade asc").Find(&users)
+		db.Where("identity='2' and grade>=?", year-4).Order("grade asc, privilege asc").Find(&users)
 	} else {
-		db.Where("identity!='1' and grade>?", year-4).Order("grade asc").Find(&users)
+		db.Where("identity='2' and grade>?", year-4).Order("grade asc, privilege asc").Find(&users)
 	}
 	return
 }
@@ -153,9 +153,9 @@ func GetUserAlumni() (users []User) {
 	year := time.Now().Year()
 	month := time.Now().Month()
 	if month < 9 {
-		db.Where("identity!='1' and grade<?", year-4).Order("grade desc").Find(&users)
+		db.Where("identity='2' and grade<?", year-4).Order("grade desc, privilege asc").Find(&users)
 	} else {
-		db.Where("identity!='1' and grade<=?", year-4).Order("grade desc").Find(&users)
+		db.Where("identity='2' and grade<=?", year-4).Order("grade desc, privilege asc").Find(&users)
 	}
 	return
 }

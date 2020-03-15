@@ -15,7 +15,7 @@ type Contest struct {
 	Ctime      string `gorm:"column:time" json:"c_time"`
 	AwardType  string `gorm:"column:award_type" json:"r_type"`
 	TotalTeams int    `gorm:"column:total_teams" json:"total_team_num"`
-	CExtras    string `gorm:"column:c_extras" json:"total_team_num"`
+	CExtras    string `gorm:"column:c_extras" json:"c_extras"`
 }
 
 type ContestTeam struct {
@@ -48,6 +48,11 @@ func GetContestBriefList(queryRecordRule interfaceDataStruct.RecordRule) (contes
 	return
 }
 
+func GetContestList() (contests []Contest) {
+	db.Order("time asc").Find(&contests)
+	return
+}
+
 func GetContestByCid(cid int) (contest Contest) {
 	db.Where("cid=?", cid).First(&contest)
 	return
@@ -76,5 +81,10 @@ func EditContestExtras(editInfo interfaceDataStruct.ContestEditForm) {
 
 func GetUserContestByStid(stid string) (ct []ContestTeam){
 	db.Where("mem1_stid=? or mem2_stid=? or mem3_stid=?", stid,stid,stid).Find(&ct)
+	return
+}
+
+func GetContestTeamByCid(cid int) (ct []ContestTeam) {
+	db.Where("cid=?", cid).Find(&ct)
 	return
 }

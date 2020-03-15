@@ -6,7 +6,7 @@ import { Button, Form, FormItem, Input, Message, Container,
   Dialog, MessageBox, Dropdown, DropdownItem, DropdownMenu, Alert,
   Step, Steps, Radio, RadioGroup, Select, Option, Popconfirm, Popover,
   Divider, DatePicker, InputNumber, Autocomplete, Tabs, TabPane, Upload,
-  Image } from 'element-ui'
+  Image} from 'element-ui'
 
 Vue.use(Button);Vue.use(Form);Vue.use(FormItem);Vue.use(Input);Vue.use(Container);Vue.use(Header);
 Vue.use(Aside);Vue.use(Main);Vue.use(Footer);Vue.use(Menu);Vue.use(Submenu);Vue.use(MenuItem);

@@ -1,9 +1,7 @@
 <template>
   <el-card class="box-card">
     <el-page-header @back="goToHome" content="公告列表"></el-page-header>
-    <el-table
-            :data="lists"
-            style="width: 100%">
+    <el-table :data="lists" style="width: 100%">
       <el-table-column prop="date" label="发布日期" width="100"></el-table-column>
       <el-table-column prop="title" label="标题" width="650"></el-table-column>
       <el-table-column prop="promulgator" label="发布者" width="200">

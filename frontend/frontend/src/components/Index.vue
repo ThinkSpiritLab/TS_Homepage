@@ -1,61 +1,80 @@
 <template>
-  <el-container class="index-container">
-    <el-main>
-      <div class="header">
-        <el-row type="flex" style="margin-top: 20px; height: 55px">
-          <el-col :span="3">
-            <div>
-              <img src="../assets/TS_logo.png" alt="TS_logo" class="topIMG1">
-              <span style="margin-left: 5px" class="web-font">Think Spirit Lab</span>
-            </div>
-          </el-col>
-          <el-col :span="4">
-            <div style="margin-left: 20px">
-              <img src="../assets/icpc.png" alt="TS_logo" class="topIMG2">
-              <span style="margin-left: 10px" class="web-font">NUIST CPC Team</span>
-            </div>
-          </el-col>
-          <el-col :span="12">
-            <div style="margin-right: auto; margin-left: auto">
-              <el-menu :default-active="$route.path" class="el-menu-demo" mode="horizontal" router>
-                <el-menu-item index="/main">首页</el-menu-item>
-                <el-menu-item index="/announcement">公告</el-menu-item>
-                <el-menu-item index="/members">成员</el-menu-item>
-                <el-menu-item index="/contests">竞赛历史</el-menu-item>
-                <el-menu-item index="/news">活动与新闻</el-menu-item>
-                <el-menu-item index="/trains">TSOJ V5</el-menu-item>
-                <el-submenu index="platform">
-                  <template slot="title">学习平台</template>
-                  <el-menu-item index="/1">语言学习暨计算机等级考试学习系统</el-menu-item>
-                  <el-menu-item index="/2">课程学习平台</el-menu-item>
-                </el-submenu>
-              </el-menu>
-            </div>
-          </el-col>
-          <el-col :span="5">
-            <div v-if="hasLogIn">
-              <el-dropdown @command="handleUserTipCommand">
-                <el-button type="primary">
-                  {{UserTipInfo}}<i class="el-icon-arrow-down el-icon--right"></i>
-                </el-button>
-                <el-dropdown-menu slot="dropdown">
-                  <el-dropdown-item command="1">修改资料</el-dropdown-item>
-                  <el-dropdown-item command="2">退出</el-dropdown-item>
-                </el-dropdown-menu>
-              </el-dropdown>
-              <el-button v-show="consolePrivilege" type="primary" class="btnConsole" @click="goToConsole">后台</el-button>
-            </div>
-            <div v-else>
-              <el-button type="primary" @click="goToLogin">登录</el-button>
-            </div>
-          </el-col>
-        </el-row>
-      </div>
-      <div class="index-main-body">
-        <router-view @LoginComplete="checkLoginState"></router-view>
-      </div>
-    </el-main>
-  </el-container>
+    <el-container class="index-container">
+      <el-main style="height: 100%">
+        <div class="header">
+          <el-row type="flex" style="margin-top: 20px; height: 55px">
+            <el-col :span="3">
+              <div>
+                <img src="../assets/TS_logo.png" alt="TS_logo" class="topIMG1">
+                <span style="margin-left: 5px" class="web-font">Think Spirit Lab</span>
+              </div>
+            </el-col>
+            <el-col :span="4">
+              <div style="margin-left: 20px">
+                <img src="../assets/icpc.png" alt="TS_logo" class="topIMG2">
+                <span style="margin-left: 10px" class="web-font">NUIST CPC Team</span>
+              </div>
+            </el-col>
+            <el-col :span="12">
+              <div style="margin-right: auto; margin-left: auto">
+                <el-menu :default-active="$route.path" class="el-menu-demo" mode="horizontal" router>
+                  <el-menu-item index="/main">首页</el-menu-item>
+                  <el-menu-item index="/announcement">公告</el-menu-item>
+                  <el-menu-item index="/members">成员</el-menu-item>
+                  <el-menu-item index="/contests">竞赛历史</el-menu-item>
+                  <el-menu-item index="/news">活动与新闻</el-menu-item>
+                  <el-submenu index="platform">
+                    <template slot="title">Think Spirit 网站群</template>
+                    <el-menu-item index="/2" disabled>TSOJ V5（陈靖宇的 LevOJ，学校服务器没开）</el-menu-item>
+                    <el-menu-item index="/2" disabled>语言学习暨计算机等级考试学习系统（张斌杰毕设，还没写）</el-menu-item>
+                    <el-menu-item index="/3" disabled>课程辅助学习平台（曹梦琪毕设，开发中）</el-menu-item>
+                    <el-menu-item index="/4" disabled>实验报告管理平台（倪文卿毕设，开发中）</el-menu-item>
+                  </el-submenu>
+                </el-menu>
+              </div>
+            </el-col>
+            <el-col :span="5">
+              <div v-if="hasLogIn">
+                <el-dropdown @command="handleUserTipCommand">
+                  <el-button type="primary">
+                    {{UserTipInfo}}<i class="el-icon-arrow-down el-icon--right"></i>
+                  </el-button>
+                  <el-dropdown-menu slot="dropdown">
+                    <el-dropdown-item command="1">修改资料</el-dropdown-item>
+                    <el-dropdown-item command="2">退出</el-dropdown-item>
+                  </el-dropdown-menu>
+                </el-dropdown>
+                <el-button v-show="consolePrivilege" type="primary" class="btnConsole" @click="goToConsole">后台</el-button>
+              </div>
+              <div v-else>
+                <el-button type="primary" @click="goToLogin">登录</el-button>
+              </div>
+            </el-col>
+          </el-row>
+        </div>
+        <div class="index-main-body">
+          <router-view @LoginComplete="checkLoginState"></router-view>
+        </div>
+        <div class="footer">
+          <el-row>
+            <el-col :span="8">
+              PenguinZhang @ Think Spirit Lab 版权所有
+            </el-col>
+            <el-col :span="8">
+              <a href="http://www.beian.miit.gov.cn/">
+                苏ICP备18001271号-1
+              </a>
+            </el-col>
+            <el-col :span="8" style="height: 20px">
+              <a target="_blank" href="" style="height: 20px">
+                <img src="https://pic3.zhimg.com/80/v2-d0289dc0a46fc5b15b3363ffa78cf6c7.png">
+                <span> 苏公网安备 还没批下来占个位置 号</span>
+              </a>
+            </el-col>
+          </el-row>
+        </div>
+      </el-main>
+    </el-container>
 </template>
 
 <script>
@@ -139,7 +158,7 @@
     padding-top: 0;
   }
   .index-container {
-    height: 100%;
+    height: 100% !important;
   }
   .topIMG1 {
     width: 50px;
@@ -176,5 +195,46 @@
     -webkit-font-smoothing: antialiased;
     -webkit-text-stroke-width: 0.2px;
     -moz-osx-font-smoothing: grayscale;
+  }
+  .footer {
+    margin-top: 20px;
+    margin-bottom: 5px;
+    text-align: center;
+    color: #999;
+    font-size: 15px;
+  }
+</style>
+<style>
+  .el-scrollbar__wrap
+  {
+    overflow-x: hidden !important;
+  }
+  .el-scrollbar__view {
+    height: 100% !important;
+  }
+  a {
+    text-decoration: none
+  }
+  a:visited {
+    color: #999;
+    text-decoration: none
+  }
+
+  ::-webkit-scrollbar {
+    /*滚动条整体样式*/
+    width : 10px;  /*高宽分别对应横竖滚动条的尺寸*/
+    height: 1px;
+  }
+  ::-webkit-scrollbar-thumb {
+    /*滚动条里面小方块*/
+    border-radius: 10px;
+    box-shadow   : inset 0 0 5px rgba(0, 0, 0, 0.2);
+    background   : #535353;
+  }
+  ::-webkit-scrollbar-track {
+    /*滚动条里面轨道*/
+    box-shadow   : inset 0 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    background   : #ededed;
   }
 </style>
