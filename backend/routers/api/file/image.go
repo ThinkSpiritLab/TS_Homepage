@@ -4,7 +4,6 @@ import (
 	"backend/pkg/e"
 	"backend/pkg/setting"
 	"backend/pkg/util"
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"io"
 	"net/http"
@@ -35,8 +34,6 @@ func UploadImage(c *gin.Context) {
 			code = e.ERROR_UPLOAD_IMAGE_WRONG_TYPE
 		} else {
 			filename := util.EncodeMD5(header.Filename+time.Now().String()) + setting.AppSetting.ImageAllowExts[index]
-			fmt.Println(setting.AppSetting.ImageSavePath)
-			fmt.Println(setting.AppSetting.PublicDIR)
 			out, err := os.Create(setting.AppSetting.ImageSavePath + "/" + filename)
 			if err != nil {
 				code = e.ERROR_UPLOAD_IMAGE_FAIL

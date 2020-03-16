@@ -7,7 +7,7 @@
       <el-table :data="lists" style="width: 100%; height: 440px;" stripe>
         <el-table-column prop="title" label="公告标题" min-width="80%">
           <template slot-scope="scope">
-            <span @click="goToDetail(scope.row.b_id)">{{scope.row.title}}</span>
+            <span @click="goToDetail(scope.row.b_id)" class="newsItem">{{scope.row.title}}</span>
           </template>
         </el-table-column>
         <el-table-column prop="date" label="发布日期" min-width="10%"></el-table-column>
@@ -52,7 +52,8 @@
         this.paginationInfo.totalRecords = res.data.total;
       },
       goToDetail: function (bid) {
-        console.log(bid)
+        const { href } = this.$router.resolve(`announcement/`+bid);
+        window.open(href, "_blank");
       }
     },
     created() {
@@ -62,5 +63,8 @@
 </script>
 
 <style scoped>
-
+  .newsItem:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
 </style>

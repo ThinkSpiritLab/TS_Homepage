@@ -71,6 +71,16 @@ func BulletinListBrief(c *gin.Context) {
 	})
 }
 
+func GetBulletinIndex(c *gin.Context)  {
+	code := e.SUCCESS
+	data := models.GetBulletinIndex(5)
+	c.JSON(http.StatusOK, gin.H{
+		"code" : code,
+		"msg" : e.GetMsg(code),
+		"data" : data,
+	})
+}
+
 func BulletinDelete(c *gin.Context)  {
 	bid := com.StrTo(c.Query("bid")).MustInt()
 	models.DeleteBulletin(bid)
@@ -105,5 +115,27 @@ func BulletinInfo(c *gin.Context) {
 		"code" : code,
 		"msg" : e.GetMsg(code),
 		"data" : info,
+	})
+}
+
+func BulletinDetail(c *gin.Context) {
+	code := e.SUCCESS
+	bid := com.StrTo(c.Query("bid")).MustInt()
+	info := models.GetBulletinDetail(bid)
+	var detail interfaceDataStruct.BulletinDetail
+	if info.Bid == 0 {
+		code = e.ERROR_BULLETIN_NOT_EXIST
+	} else {
+		detail.Bid = info.Bid
+		detail.CreatedAt = info.CreatedAt
+		name := models.GetNameByStid(info.Stid)
+		detail.Promulgator = info.Stid + " " + name
+		detail.BulletinTitle = info.BulletinTitle
+		detail.BulletinDetail = info.BulletinDetail
+	}
+	c.JSON(http.StatusOK, gin.H{
+		"code" : code,
+		"msg" : e.GetMsg(code),
+		"data" : detail,
 	})
 }

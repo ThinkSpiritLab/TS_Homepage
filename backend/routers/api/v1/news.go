@@ -121,3 +121,25 @@ func NewsInfo(c *gin.Context) {
 		"data" : info,
 	})
 }
+
+func NewsDetail(c *gin.Context) {
+	code := e.SUCCESS
+	nid := com.StrTo(c.Query("nid")).MustInt()
+	info := models.GetNewsDetail(nid)
+	var detail interfaceDataStruct.NewsDetail
+	if info.Nid == 0 {
+		code = e.ERROR_BULLETIN_NOT_EXIST
+	} else {
+		detail.Nid = info.Nid
+		detail.CreatedAt = info.CreatedAt
+		name := models.GetNameByStid(info.Stid)
+		detail.Promulgator = info.Stid + " " + name
+		detail.NewsTitle = info.NewsTitle
+		detail.NewsDetail = info.NewsDetail
+	}
+	c.JSON(http.StatusOK, gin.H{
+		"code" : code,
+		"msg" : e.GetMsg(code),
+		"data" : detail,
+	})
+}

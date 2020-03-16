@@ -31,19 +31,26 @@ func ConsoleMenu(c *gin.Context)  {
 
 		menuBulletinItem1 := map[string]interface{} {"mid": 131, "mname": "新增公告", "path": "addBulletin"}
 		menuBulletinItem2 := map[string]interface{} {"mid": 132, "mname": "公告列表", "path": "listBulletin"}
-		meunBulletin := make(map[string]interface{})
-		meunBulletin["mid"] = 130
-		meunBulletin["mname"] = "公告管理"
-		meunBulletin["children"] = []map[string]interface{} {menuBulletinItem1, menuBulletinItem2}
-		data = append(data, meunBulletin)
+		menuBulletin := make(map[string]interface{})
+		menuBulletin["mid"] = 130
+		menuBulletin["mname"] = "公告管理"
+		menuBulletin["children"] = []map[string]interface{} {menuBulletinItem1, menuBulletinItem2}
+		data = append(data, menuBulletin)
 
 		menuNewsItem1 := map[string]interface{} {"mid": 141, "mname": "新增新闻", "path": "addNews"}
 		menuNewsItem2 := map[string]interface{} {"mid": 142, "mname": "新闻列表", "path": "listNews"}
-		meunNews := make(map[string]interface{})
-		meunNews["mid"] = 140
-		meunNews["mname"] = "新闻管理"
-		meunNews["children"] = []map[string]interface{} {menuNewsItem1, menuNewsItem2}
-		data = append(data, meunNews)
+		menuNews := make(map[string]interface{})
+		menuNews["mid"] = 140
+		menuNews["mname"] = "新闻管理"
+		menuNews["children"] = []map[string]interface{} {menuNewsItem1, menuNewsItem2}
+		data = append(data, menuNews)
+
+		menuContentSettingItem1 := map[string]interface{} {"mid": 151, "mname": "首页照片墙管理", "path": "carouselSetting"}
+		menuContent := make(map[string]interface{})
+		menuContent["mid"] = 150
+		menuContent["mname"] = "内容管理"
+		menuContent["children"] = []map[string]interface{} {menuContentSettingItem1}
+		data = append(data, menuContent)
 	}
 	c.JSON(http.StatusOK, gin.H{
 		"code" : code,

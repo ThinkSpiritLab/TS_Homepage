@@ -1,13 +1,13 @@
 <template>
   <el-card class="box-card">
     <div class="clearfix" style="text-align: left">
-      <span>公告列表</span>
+      <span>活动与新闻列表</span>
     </div>
     <div style="text-align: center">
       <el-table :data="lists" style="width: 100%; height: 440px;" stripe>
         <el-table-column prop="title" label="标题" min-width="80%">
           <template slot-scope="scope">
-            <span @click="goToDetail(scope.row.n_id)">{{scope.row.title}}</span>
+            <span @click="goToDetail(scope.row.n_id)" class="newsItem">{{scope.row.title}}</span>
           </template>
         </el-table-column>
         <el-table-column prop="date" label="日期" min-width="10%"></el-table-column>
@@ -52,7 +52,8 @@
         this.paginationInfo.totalRecords = res.data.total;
       },
       goToDetail: function (nid) {
-        console.log(nid)
+        const { href } = this.$router.resolve(`news/`+nid);
+        window.open(href, "_blank");
       }
     },
     created() {
@@ -62,5 +63,8 @@
 </script>
 
 <style scoped>
-
+  .newsItem:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
 </style>

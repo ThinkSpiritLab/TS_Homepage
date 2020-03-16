@@ -53,6 +53,11 @@ func GetContestList() (contests []Contest) {
 	return
 }
 
+func GetContestMoments() (contests []Contest) {
+	db.Select("cid, name_zh, time").Find(&contests)
+	return
+}
+
 func GetContestByCid(cid int) (contest Contest) {
 	db.Where("cid=?", cid).First(&contest)
 	return

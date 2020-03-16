@@ -1,6 +1,6 @@
 <template>
     <el-container class="index-container">
-      <el-main style="height: 100%">
+      <el-main>
         <div class="header">
           <el-row type="flex" style="margin-top: 20px; height: 55px">
             <el-col :span="3">
@@ -17,18 +17,20 @@
             </el-col>
             <el-col :span="12">
               <div style="margin-right: auto; margin-left: auto">
-                <el-menu :default-active="$route.path" class="el-menu-demo" mode="horizontal" router>
+                <el-menu :default-active="$route.path" class="menuBar" mode="horizontal" router>
                   <el-menu-item index="/main">首页</el-menu-item>
-                  <el-menu-item index="/announcement">公告</el-menu-item>
                   <el-menu-item index="/members">成员</el-menu-item>
                   <el-menu-item index="/contests">竞赛历史</el-menu-item>
+                  <el-menu-item index="/announcement">公告</el-menu-item>
                   <el-menu-item index="/news">活动与新闻</el-menu-item>
-                  <el-submenu index="platform">
+                  <el-menu-item index="/about">关于</el-menu-item>
+                  <el-submenu index="platform" style="height: 40px">
                     <template slot="title">Think Spirit 网站群</template>
-                    <el-menu-item index="/2" disabled>TSOJ V5（陈靖宇的 LevOJ，学校服务器没开）</el-menu-item>
-                    <el-menu-item index="/2" disabled>语言学习暨计算机等级考试学习系统（张斌杰毕设，还没写）</el-menu-item>
-                    <el-menu-item index="/3" disabled>课程辅助学习平台（曹梦琪毕设，开发中）</el-menu-item>
-                    <el-menu-item index="/4" disabled>实验报告管理平台（倪文卿毕设，开发中）</el-menu-item>
+                    <el-menu-item><a href="https://oj.vicz.cn/" target="_blank">TSOJ v5</a></el-menu-item>
+                    <el-menu-item><a href="https://nuistcpc.club/" target="_blank">NUIST CPC 集训队内部网站</a></el-menu-item>
+                    <el-menu-item disabled>语言学习暨计算机等级考试学习系统（张斌杰毕设，还没写）</el-menu-item>
+                    <el-menu-item disabled>课程辅助学习平台（曹梦琪毕设，开发中）</el-menu-item>
+                    <el-menu-item disabled>实验报告管理平台（倪文卿毕设，开发中）</el-menu-item>
                   </el-submenu>
                 </el-menu>
               </div>
@@ -58,16 +60,16 @@
         <div class="footer">
           <el-row>
             <el-col :span="8">
-              PenguinZhang @ Think Spirit Lab 版权所有
+              © 2020 PenguinZhang @ Think Spirit Lab 版权所有
             </el-col>
             <el-col :span="8">
               <a href="http://www.beian.miit.gov.cn/">
-                苏ICP备18001271号-1
+                苏ICP备18001271号-2
               </a>
             </el-col>
             <el-col :span="8" style="height: 20px">
               <a target="_blank" href="" style="height: 20px">
-                <img src="https://pic3.zhimg.com/80/v2-d0289dc0a46fc5b15b3363ffa78cf6c7.png">
+                <img src="../assets/police.png">
                 <span> 苏公网安备 还没批下来占个位置 号</span>
               </a>
             </el-col>
@@ -153,6 +155,17 @@
       }
     }
   }
+  .menuBar {
+    height: 40px;
+    .el-menu-item {
+      height: 40px;
+      line-height: 40px;
+    }
+    .el-submenu ::v-deep .el-submenu__title {
+      height: 40px !important;
+      line-height: 40px !important;
+    }
+  }
   .el-main {
     background-color: #F4F4F4;
     padding-top: 0;
@@ -213,6 +226,7 @@
     height: 100% !important;
   }
   a {
+    color: #999;
     text-decoration: none
   }
   a:visited {

@@ -6,8 +6,8 @@ type Bulletin struct {
 	Bid            int       `gorm:"primary_key" json:"bid"`
 	BulletinTitle  string     `json:"title"`
 	BulletinDetail string     `json:"detail"`
-	Stid           string     `json:"date"`
-	CreatedAt      string     `json:"stid"`
+	Stid           string     `json:"stid"`
+	CreatedAt      string     `json:"date"`
 }
 
 func AddBulletin(bulletin Bulletin) bool {
@@ -16,8 +16,13 @@ func AddBulletin(bulletin Bulletin) bool {
 }
 
 func GetBulletinBriefList(rule interfaceDataStruct.RecordRule) (bulletin []Bulletin, cnt int) {
-	db.Omit("detail").Offset(rule.Offset).Limit(rule.Size).Order("created_at desc").Find(&bulletin)
+	db.Omit("news_detail").Offset(rule.Offset).Limit(rule.Size).Order("created_at desc").Find(&bulletin)
 	db.Model(&Bulletin{}).Count(&cnt)
+	return
+}
+
+func GetBulletinIndex(cnt int) (bulletin []Bulletin) {
+	db.Omit("news_detail, stid").Limit(cnt).Order("created_at desc").Find(&bulletin)
 	return
 }
 
@@ -31,6 +36,11 @@ func GetBulletinInfo(bid int) (info interfaceDataStruct.EditBulletinForm){
 	info.Bid = bulletin.Bid
 	info.BulletinDetail = bulletin.BulletinDetail
 	info.BulletinTitle = bulletin.BulletinTitle
+	return
+}
+
+func GetBulletinDetail(bid int) (bulletin Bulletin){
+	db.Where("bid=?", bid).First(&bulletin)
 	return
 }
 

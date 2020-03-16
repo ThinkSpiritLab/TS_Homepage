@@ -5,7 +5,7 @@ import "backend/routers/api/interfaceDataStruct"
 type News struct {
 	Nid            int       `gorm:"primary_key" json:"nid"`
 	NewsTitle      string
-	NewsDetail    string
+	NewsDetail     string
 	Stid           string
 	CreatedAt      string
 }
@@ -13,6 +13,11 @@ type News struct {
 func AddNews(news News) bool {
 	db.Create(&news)
 	return news.Nid>0
+}
+
+func GetNewsMoments() (news []News) {
+	db.Select("nid, news_title, created_at").Find(&news)
+	return
 }
 
 func GetNewsBriefList(rule interfaceDataStruct.RecordRule) (news []News, cnt int) {
@@ -32,6 +37,11 @@ func GetNewsInfo(nid int) (info interfaceDataStruct.EditNewsForm){
 	info.NewsDetail = news.NewsDetail
 	info.NewsTitle = news.NewsTitle
 	info.NewsDate = news.CreatedAt
+	return
+}
+
+func GetNewsDetail(nid int) (news News){
+	db.Where("nid=?", nid).First(&news)
 	return
 }
 

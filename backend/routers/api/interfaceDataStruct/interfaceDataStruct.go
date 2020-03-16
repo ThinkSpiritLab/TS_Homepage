@@ -90,6 +90,13 @@ type BulletinListBrief struct {
 	Date         string `json:"date"`
 	Promulgator  string `json:"promulgator"`
 }
+type BulletinDetail struct {
+	Bid            int        `gorm:"primary_key" json:"bid"`
+	BulletinTitle  string     `json:"title"`
+	BulletinDetail string     `json:"detail"`
+	Promulgator    string     `json:"promulgator"`
+	CreatedAt      string     `json:"date"`
+}
 
 type EditBulletinForm struct {
 	Bid            int    `json:"bid"`
@@ -108,6 +115,14 @@ type NewsListBrief struct {
 	Title        string `json:"title"`
 	Date         string `json:"date"`
 	Promulgator  string `json:"promulgator"`
+}
+
+type NewsDetail struct {
+	Nid            int        `gorm:"primary_key" json:"nid"`
+	NewsTitle      string     `json:"title"`
+	NewsDetail     string     `json:"detail"`
+	Promulgator    string     `json:"promulgator"`
+	CreatedAt      string     `json:"date"`
 }
 
 type EditNewsForm struct {
@@ -171,4 +186,11 @@ type ContestTeamDetail struct {
 	Star     string `json:"t_star"`
 	Rank     int    `json:"t_rank"`
 	Awards   string `json:"t_awards"`
+}
+
+type Moment struct {
+	ID    int    `json:"id"`
+	Type  string `json:"type"`
+	Title string `json:"title"`
+	Date  string `json:"date"`
 }

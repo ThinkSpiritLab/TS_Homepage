@@ -22,7 +22,11 @@ import MemberView from "../components/Index/Members/MemberView";
 import ContestView from "../components/Index/Contests/ContestView";
 import Contests from "../components/Index/Contests/Contests";
 import Announcement from "../components/Index/Announcement/Announcement";
+import AnnouncementView from "../components/Index/Announcement/AnnouncementView";
 import News from "../components/Index/News/News";
+import NewsView from "../components/Index/News/NewsView";
+import About from "../components/Index/About";
+import CarouseSetting from "../components/Console/CarouseSetting";
 
 Vue.use(VueRouter);
 
@@ -38,7 +42,10 @@ const routes = [
       { path: '/contests', component: Contests},
       { path: '/contest/:cid', component: ContestView},
       { path: '/announcement', component: Announcement},
+      { path: '/announcement/:bid', component: AnnouncementView},
       { path: '/news', component: News},
+      { path: '/news/:nid', component: NewsView},
+      { path: '/about', component: About},
     ] },
   { path: '/console', component: Console, redirect: '/console_home', children:[
       { path: '/console_home', component: Home},
@@ -52,6 +59,7 @@ const routes = [
       { path: '/console_addNews', component: AddNews},
       { path: '/console_listNews', component: ListNews},
       { path: '/console_editNews/:nid', component: EditNews},
+      { path: '/console_carouselSetting', component: CarouseSetting},
     ] },
 ];
 

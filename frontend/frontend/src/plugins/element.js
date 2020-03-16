@@ -6,7 +6,7 @@ import { Button, Form, FormItem, Input, Message, Container,
   Dialog, MessageBox, Dropdown, DropdownItem, DropdownMenu, Alert,
   Step, Steps, Radio, RadioGroup, Select, Option, Popconfirm, Popover,
   Divider, DatePicker, InputNumber, Autocomplete, Tabs, TabPane, Upload,
-  Image} from 'element-ui'
+  Image, Carousel, CarouselItem} from 'element-ui'
 
 Vue.use(Button);Vue.use(Form);Vue.use(FormItem);Vue.use(Input);Vue.use(Container);Vue.use(Header);
 Vue.use(Aside);Vue.use(Main);Vue.use(Footer);Vue.use(Menu);Vue.use(Submenu);Vue.use(MenuItem);
@@ -15,5 +15,6 @@ Vue.use(Switch);Vue.use(Tooltip);Vue.use(Pagination);Vue.use(Dialog);Vue.use(Dro
 Vue.use(DropdownMenu);Vue.use(Alert);Vue.use(Step);Vue.use(Steps);Vue.use(Radio);Vue.use(RadioGroup);
 Vue.use(Select);Vue.use(Option);Vue.use(Popconfirm);Vue.use(Popover);Vue.use(Divider);Vue.use(DatePicker);
 Vue.use(InputNumber);Vue.use(Autocomplete);Vue.use(TabPane);Vue.use(Tabs);Vue.use(Upload);Vue.use(Image);
+Vue.use(Carousel);Vue.use(CarouselItem);
 Vue.prototype.$message = Message;
 Vue.prototype.$confirm = MessageBox.confirm;

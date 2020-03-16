@@ -36,10 +36,17 @@ func InitRouter() *gin.Engine {
 		apiV1.GET("/contest_detail", v1.ContestDetail)
 		apiV1.GET("/bulletin_list_brief", v1.BulletinListBrief)
 		apiV1.GET("/bulletin_info", v1.BulletinInfo)
+		apiV1.GET("/bulletin_detail", v1.BulletinDetail)
 		apiV1.GET("/news_list_brief", v1.NewsListBrief)
 		apiV1.GET("/news_info", v1.NewsInfo)
+		apiV1.GET("/news_detail", v1.NewsDetail)
+		apiV1.GET("/moments", v1.GetMoments)
+		apiV1.GET("/bulletinIndex", v1.GetBulletinIndex)
+		apiV1.GET("/indexImgList", v1.IndexImgList)
 
 		apiV1.GET("/console/menu_list", jwt.JWT_console(), v1.ConsoleMenu)
+
+		apiV1.POST("/console/setIndexImg", jwt.JWT_teamManage(), v1.SetIndexImgList)
 
 		apiV1.POST("/console/user_regist", jwt.JWT_teamManage(), v1.UserAdd)
 		apiV1.DELETE("/console/user_delete", jwt.JWT_teamManage(), v1.UserDelete)
