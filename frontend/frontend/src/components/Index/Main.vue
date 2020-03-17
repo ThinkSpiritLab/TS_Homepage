@@ -24,6 +24,9 @@
         </el-card>
       </el-col>
       <el-col :span="8">
+        <div style="text-align: center; margin-bottom: 40px">
+          <el-button class="web-font-main" type="primary" @click="goToAbout">关于我们 & 加入我们</el-button>
+        </div>
         <el-card class="bulletinIndex" body-style="padding-top: 0">
           <div slot="header" class="clearfix">
             <span>公告</span>
@@ -40,9 +43,7 @@
             </el-table>
           </div>
         </el-card>
-        <div style="text-align: center; margin-top: 40px">
-          <el-button class="web-font-main" type="primary" @click="goToAbout">关于我们 & 加入我们</el-button>
-        </div>
+
       </el-col>
     </el-row>
   </div>

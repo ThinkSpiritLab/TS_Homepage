@@ -4,13 +4,13 @@
         <div class="header">
           <el-row type="flex" style="margin-top: 20px; height: 55px">
             <el-col :span="3">
-              <div>
+              <div class="hlink" @click="goToMain">
                 <img src="../assets/TS_logo.png" alt="TS_logo" class="topIMG1">
                 <span style="margin-left: 5px" class="web-font">Think Spirit Lab</span>
               </div>
             </el-col>
             <el-col :span="4">
-              <div style="margin-left: 20px">
+              <div style="margin-left: 20px" class="hlink" @click="goToCPCTeam">
                 <img src="../assets/icpc.png" alt="TS_logo" class="topIMG2">
                 <span style="margin-left: 10px" class="web-font">NUIST CPC Team</span>
               </div>
@@ -96,8 +96,14 @@
       }
     },
     methods: {
+      goToCPCTeam: function() {
+        window.open('https://nuistcpc.club', "_blank");
+      },
       goToLogin: function () {
         this.$router.push("/login");
+      },
+      goToMain: function () {
+        this.$router.push("/main");
       },
       checkLoginState: function () {
         this.userTipInfo = JSON.parse(window.sessionStorage.getItem('MyInfo'));
@@ -215,6 +221,9 @@
     text-align: center;
     color: #999;
     font-size: 15px;
+  }
+  .hlink:hover {
+    cursor: pointer;
   }
 </style>
 <style>

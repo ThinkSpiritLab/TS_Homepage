@@ -19,7 +19,6 @@ module.exports = {
       }
     }
   },
-
   pwa: {
     iconPaths: {
       favicon32: 'favicon.ico',
@@ -28,5 +27,5 @@ module.exports = {
       maskIcon: 'favicon.ico',
       msTileImage: 'favicon.ico'
     }
-  }
+  },
 }

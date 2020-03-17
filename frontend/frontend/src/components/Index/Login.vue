@@ -1,16 +1,15 @@
 <template>
   <el-card class="login-card">
-<!--    <img src="../../assets/TS_logo.png" alt="TS_logo">-->
     <div class="login_box">
       <div class="avatar_box">
         <img src="../../assets/TS_logo.png" alt="TS_logo">
       </div>
       <el-form ref="login_form_ref" :model="login_form" :rules="login_rules" class="login_form">
         <el-form-item prop="Stid">
-          <el-input v-model="login_form.Stid" prefix-icon="iconfont icon-user"></el-input>
+          <el-input v-model="login_form.Stid" prefix-icon="el-icon-user"></el-input>
         </el-form-item>
         <el-form-item prop="Psw">
-          <el-input v-model="login_form.Psw" prefix-icon="iconfont icon-3702mima" type="password"></el-input>
+          <el-input v-model="login_form.Psw" prefix-icon="el-icon-lock" type="password"></el-input>
         </el-form-item>
         <el-form-item class="btns">
           <el-button type="primary" round @click="login" :loading="login_button_loading">登录</el-button>

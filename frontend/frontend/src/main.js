@@ -11,7 +11,7 @@ axios.interceptors.request.use(function (config) {
 });
 
 Vue.prototype.$http = axios;
-axios.defaults.baseURL = '/api';
+axios.defaults.baseURL = '/api/v1';
 
 Vue.config.productionTip = false
 

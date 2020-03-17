@@ -2,18 +2,16 @@ package routers
 
 import (
 	"backend/middleware/jwt"
-	"backend/pkg/setting"
 	"backend/routers/api/file"
 	"backend/routers/api/v1"
 	"github.com/gin-gonic/gin"
-	"net/http"
 )
 
 func InitRouter() *gin.Engine {
 	r := gin.New()
 	r.Use(gin.Logger())
 	r.Use(gin.Recovery())
-	r.StaticFS("/public", http.Dir(setting.AppSetting.PublicDIR))
+	//r.StaticFS("/public", http.Dir(setting.AppSetting.PublicDIR))
 
 	apiV1 := r.Group("/api/v1")
 	{
