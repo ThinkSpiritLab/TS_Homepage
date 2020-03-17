@@ -54,6 +54,7 @@
           toolbar: this.toolbar,
           branding: false,
           menubar: false,
+          convert_urls: false,
 
           images_upload_handler: async (blobInfo, success, failure) => {
             if (blobInfo.blob().size > 5242880) {
