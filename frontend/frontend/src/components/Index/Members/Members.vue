@@ -5,14 +5,14 @@
         <el-tab-pane label="教师与教练" name="faculty">
           <el-row :gutter="30">
             <el-col :span="8" v-for="(val, index) in infoList" :key="index">
-              <el-card shadow="always" body-style="padding-top: 0">
+              <el-card shadow="always" body-style="padding-top: 5px; padding-bottom: 5px">
                 <el-row :gutter="40">
                   <el-col :span="12">
                     <img :src="val.avatarUrl" class="memberAvatar" v-if="val.avatarUrl !== ''">
                     <img src="../../../assets/defaultAvatar.png" class="memberAvatar" v-else>
                   </el-col>
                   <el-col :span="12">
-                    <div style="padding: 14px;position: absolute;top: 35%; text-align: center">
+                    <div style="padding: 20px;position: absolute;top: 35%; text-align: center; padding-left: 50px;">
                       <div style="margin-bottom: 20px">{{val.name}}</div>
                     </div>
                   </el-col>
