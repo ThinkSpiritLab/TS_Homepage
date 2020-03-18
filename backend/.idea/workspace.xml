@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5d5ba5d7-4dde-4351-807f-66c25e22b460" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../frontend/frontend/src/components/Index/Members/Members.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/frontend/src/components/Index/Members/Members.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/frontend/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/frontend/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/frontend/dist.zip" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
