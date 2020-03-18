@@ -12,7 +12,7 @@
                     <img src="../../../assets/defaultAvatar.png" class="memberAvatar" v-else>
                   </el-col>
                   <el-col :span="12">
-                    <div style="padding: 20px; position: absolute;top: 35%; text-align: center; padding-left: 50px;">
+                    <div style="position: absolute;top: 35%; text-align: center; padding: 20px 20px 20px 50px;">
                       <div style="margin-bottom: 20px">{{val.name}}</div>
                     </div>
                   </el-col>
