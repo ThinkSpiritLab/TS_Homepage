@@ -3,19 +3,19 @@
       <el-main>
         <div class="header">
           <el-row type="flex" style="margin-top: 20px; height: 55px">
-            <el-col :span="3">
+            <el-col :span="4">
               <div class="hlink" @click="goToMain">
                 <img src="../assets/TS_logo.png" alt="TS_logo" class="topIMG1">
-                <span style="margin-left: 5px" class="web-font">Think Spirit Lab</span>
+                <span style="margin-left: 5px" class="web-font">Think Spirit Team</span>
               </div>
             </el-col>
             <el-col :span="4">
-              <div style="margin-left: 20px" class="hlink" @click="goToCPCTeam">
+              <div style="margin-left: 10px" class="hlink" @click="goToCPCTeam">
                 <img src="../assets/icpc.png" alt="TS_logo" class="topIMG2">
                 <span style="margin-left: 10px" class="web-font">NUIST CPC Team</span>
               </div>
             </el-col>
-            <el-col :span="12">
+            <el-col :span="11">
               <div style="margin-right: auto; margin-left: auto">
                 <el-menu :default-active="$route.path" class="menuBar" mode="horizontal" router>
                   <el-menu-item index="/main">首页</el-menu-item>
@@ -60,7 +60,7 @@
         <div class="footer">
           <el-row>
             <el-col :span="8">
-              © 2020 PenguinZhang @ Think Spirit Lab 版权所有
+              © 2020 PenguinZhang @ Think Spirit Team 版权所有
             </el-col>
             <el-col :span="8">
               <a href="http://www.beian.miit.gov.cn/">
@@ -69,8 +69,9 @@
             </el-col>
             <el-col :span="8" style="height: 20px">
               <a target="_blank" href="" style="height: 20px">
-                <img src="../assets/police.png">
-                <span> 苏公网安备 还没批下来占个位置 号</span>
+                <div style="width:300px;margin:0 auto; padding:0 0;">
+                  <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=32011202000373" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><img src="../assets/beian.png" style="float:left;"/><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">苏公网安备 32011202000373号</p></a>
+                </div>
               </a>
             </el-col>
           </el-row>
