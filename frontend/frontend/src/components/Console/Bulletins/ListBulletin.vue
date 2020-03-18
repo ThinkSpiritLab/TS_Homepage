@@ -9,7 +9,7 @@
       <el-table-column prop="options" label="操作">
         <template slot-scope="scope">
           <el-tooltip effect="dark" content="查看公告全文" placement="top" :enterable="false">
-            <el-button type="info" icon="el-icon-files" size="mini"></el-button>
+            <el-button type="info" icon="el-icon-files" size="mini" @click="viewBulletin(scope.row.b_id)"></el-button>
           </el-tooltip>
           <el-tooltip effect="dark" content="编辑公告" placement="top" :enterable="false">
             <el-button type="primary" icon="el-icon-edit" size="mini" @click="editBulletin(scope.row.b_id)"></el-button>
@@ -74,6 +74,10 @@
       },
       editBulletin: function (bid) {
         this.$router.push('/console_editBulletin/' + bid)
+      },
+      viewBulletin: function (bid) {
+        const { href } = this.$router.resolve(`announcement/`+bid);
+        window.open(href, "_blank");
       }
     },
     created() {

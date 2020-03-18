@@ -11,7 +11,7 @@
       <el-table-column prop="options" label="操作">
         <template slot-scope="scope">
           <el-tooltip effect="dark" content="查看新闻全文" placement="top" :enterable="false">
-            <el-button type="info" icon="el-icon-files" size="mini"></el-button>
+            <el-button type="info" icon="el-icon-files" size="mini" @click="viewDetail(scope.row.n_id)"></el-button>
           </el-tooltip>
           <el-tooltip effect="dark" content="编辑新闻" placement="top" :enterable="false">
             <el-button type="primary" icon="el-icon-edit" size="mini" @click="editNews(scope.row.n_id)"></el-button>
@@ -76,6 +76,10 @@
       },
       editNews: function (nid) {
         this.$router.push('/console_editNews/' + nid)
+      },
+      viewDetail: function (nid) {
+        const { href } = this.$router.resolve(`news/`+nid);
+        window.open(href, "_blank");
       }
     },
     created() {
