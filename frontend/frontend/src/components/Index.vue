@@ -19,10 +19,10 @@
               <div style="margin-right: auto; margin-left: auto">
                 <el-menu :default-active="$route.path" class="menuBar" mode="horizontal" router>
                   <el-menu-item index="/main">首页</el-menu-item>
-                  <el-menu-item index="/members">成员</el-menu-item>
-                  <el-menu-item index="/contests">竞赛历史</el-menu-item>
-                  <el-menu-item index="/announcement">公告</el-menu-item>
                   <el-menu-item index="/news">活动与新闻</el-menu-item>
+                  <el-menu-item index="/contests">竞赛历史</el-menu-item>
+                  <el-menu-item index="/members">成员</el-menu-item>
+                  <el-menu-item index="/announcement">公告</el-menu-item>
                   <el-menu-item index="/about">关于</el-menu-item>
                   <el-submenu index="platform" style="height: 40px">
                     <template slot="title">Think Spirit 网站群</template>
