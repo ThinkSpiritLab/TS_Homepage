@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5d5ba5d7-4dde-4351-807f-66c25e22b460" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/frontend/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/frontend/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/frontend/dist.zip" beforeDir="false" />
-    </list>
+    <list default="true" id="5d5ba5d7-4dde-4351-807f-66c25e22b460" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -37,6 +33,7 @@
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DefaultGoTemplateProperty" value="Go File" />
+    <property name="GO_FMT" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -90,6 +87,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="线上部署 gitignore" />
+    <option name="LAST_COMMIT_MESSAGE" value="线上部署 gitignore" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
@@ -108,6 +107,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="477" y="47" key="#go_build_test.go/0.0.1536.824@0.0.1536.824" timestamp="1583568558867" />
+    <state x="372" y="6" key="CommitChangelistDialog2" timestamp="1584497635696">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="372" y="6" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1584497635696" />
     <state width="1493" height="221" key="GridCell.Tab.0.bottom" timestamp="1584414417213">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -144,6 +147,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="270" y="55" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1584369455669" />
+    <state x="361" y="146" key="Vcs.Push.Dialog.v2" timestamp="1584497639316">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1584497639316" />
     <state width="775" height="419" key="XDebugger.FullValuePopup" timestamp="1583291439742">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
