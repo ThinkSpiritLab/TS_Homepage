@@ -5,7 +5,7 @@
         <el-tab-pane label="教师与教练" name="faculty">
           <el-row :gutter="30">
             <el-col :span="8" v-for="(val, index) in infoList" :key="index">
-              <el-card shadow="always" @click.native="goToMemberPage(val.uid)" class="userCard">
+              <el-card shadow="always" body-style="padding-top: 0">
                 <el-row :gutter="40">
                   <el-col :span="12">
                     <img :src="val.avatarUrl" class="memberAvatar" v-if="val.avatarUrl !== ''">
