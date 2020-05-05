@@ -28,7 +28,7 @@
                     <template slot="title">Think Spirit 网站群</template>
                     <el-menu-item><a href="https://oj.vicz.cn/" target="_blank">TSOJ v5</a></el-menu-item>
                     <el-menu-item><a href="https://nuistcpc.club/" target="_blank">NUIST CPC 集训队内部网站</a></el-menu-item>
-                    <el-menu-item disabled>语言学习暨计算机等级考试学习系统（张斌杰毕设，还没写）</el-menu-item>
+                    <el-menu-item disabled><a href="http://ncre.viscat.top/" target="_blank">语言学习暨计算机等级考试学习系统</a></el-menu-item>
                     <el-menu-item disabled>课程辅助学习平台（曹梦琪毕设，开发中）</el-menu-item>
                     <el-menu-item disabled>实验报告管理平台（倪文卿毕设，开发中）</el-menu-item>
                   </el-submenu>

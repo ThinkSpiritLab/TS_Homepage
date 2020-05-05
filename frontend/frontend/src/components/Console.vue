@@ -29,9 +29,7 @@
         </el-menu>
       </el-aside>
       <el-main>
-<!--        <transition name="el-fade-in">-->
-          <router-view :userTipInfo="userTipInfo"></router-view>
-<!--        </transition>-->
+        <router-view :userTipInfo="userTipInfo"></router-view>
       </el-main>
     </el-container>
   </el-container>
